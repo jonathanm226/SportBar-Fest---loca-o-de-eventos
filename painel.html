@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Painel Gestão - SportBar Fest</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body class="bg-slate-100 text-slate-800 min-h-screen font-sans">
+
+    <nav class="bg-green-700 text-white shadow-md">
+        <div class="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
+            <div class="font-bold text-xl tracking-wider text-yellow-300"><i class="fa-solid fa-beer-mug-empty mr-2"></i> SPORTBAR ADMIN</div>
+            <button onclick="carregarDados()" class="bg-green-800 hover:bg-green-900 px-4 py-2 rounded-lg text-sm transition"><i class="fa-solid fa-rotate mr-1"></i> Atualizar Dados</button>
+        </div>
+    </nav>
+
+    <main class="max-w-7xl mx-auto px-4 py-8">
+        
+        <!-- Indicadores Financeiros -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+            <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-6">
+                <div class="text-sm text-slate-500 font-bold uppercase mb-1">Total de Eventos</div>
+                <div class="text-4xl font-extrabold text-slate-800" id="dash-qtd">0</div>
+            </div>
+            <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-6">
+                <div class="text-sm text-slate-500 font-bold uppercase mb-1">Receita Prevista</div>
+                <div class="text-4xl font-extrabold text-blue-600" id="dash-receita">R$ 0,00</div>
+            </div>
+            <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-6">
+                <div class="text-sm text-slate-500 font-bold uppercase mb-1">Ticket Médio</div>
+                <div class="text-4xl font-extrabold text-green-600" id="dash-ticket">R$ 0,00</div>
+            </div>
+        </div>
+
+        <!-- Tabela de Eventos -->
+        <div class="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden">
+            <div class="p-6 border-b border-slate-200 flex justify-between items-center bg-slate-50">
+                <h2 class="text-lg font-bold text-slate-800">Agenda de Festas & Eventos</h2>
+            </div>
+            <div class="overflow-x-auto">
+                <table class="w-full text-left border-collapse">
+                    <thead>
+                        <tr class="bg-slate-100 text-slate-600 text-sm uppercase tracking-wide">
+                            <th class="p-4 font-semibold">Data / Hora</th>
+                            <th class="p-4 font-semibold">Cliente</th>
+                            <th class="p-4 font-semibold">Pacote</th>
+                            <th class="p-4 font-semibold">Valor</th>
+                            <th class="p-4 font-semibold">Status</th>
+                            <th class="p-4 font-semibold text-right">Ação</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tabela-eventos" class="divide-y divide-slate-100 text-sm">
+                        <tr><td colspan="6" class="p-8 text-center text-slate-400">Carregando dados...</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    </main>
+
+    <script>
+        // Supabase Keys inseridas conforme solicitado
+        const SUPABASE_URL = 'https://doecoosuqibzdsyadsyg.supabase.co'; 
+        const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImRvZWNvb3N1cWliemRzeWFkc3lnIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODk5MjQwMDAsImV4cCI6MjEwNTUwMDAwMH0.M2-NrLZQv-DqTtsIp4DbFHzgTjUENCA5X1ZPdDlmhPQ';
+        const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+
+        document.addEventListener('DOMContentLoaded', carregarDados);
+
+        async function carregarDados() {
+            try {
+                const { data, error } = await supabaseClient.from('eventos_sportbar').select('*').order('data_evento', { ascending: true });
+                if(error) throw error;
+
+                renderizarDashboard(data);
+                renderizarTabela(data);
+            } catch (err) {
+                console.error("Erro ao carregar dados", err);
+            }
+        }
+
+        function renderizarDashboard(eventos) {
+            let receitaAtiva = 0;
+            let qtdAtiva = 0;
+
+            eventos.forEach(ev => {
+                if(ev.status !== 'cancelado') {
+                    receitaAtiva += parseFloat(ev.valor_total);
+                    qtdAtiva++;
+                }
+            });
+
+            const ticketMedio = qtdAtiva > 0 ? (receitaAtiva / qtdAtiva) : 0;
+
+            document.getElementById('dash-qtd').innerText = qtdAtiva;
+            document.getElementById('dash-receita').innerText = `R$ ${receitaAtiva.toLocaleString('pt-BR', {minimumFractionDigits:2})}`;
+            document.getElementById('dash-ticket').innerText = `R$ ${ticketMedio.toLocaleString('pt-BR', {minimumFractionDigits:2})}`;
+        }
+
+        function renderizarTabela(eventos) {
+            const tbody = document.getElementById('tabela-eventos');
+            tbody.innerHTML = '';
+
+            if(eventos.length === 0) {
+                tbody.innerHTML = '<tr><td colspan="6" class="p-8 text-center text-slate-400">Nenhum evento agendado.</td></tr>';
+                return;
+            }
+
+            eventos.forEach(ev => {
+                const dataFmt = ev.data_evento.split('-').reverse().join('/');
+                
+                let badgeColor = 'bg-yellow-100 text-yellow-800';
+                if(ev.status === 'confirmado') badgeColor = 'bg-green-100 text-green-800';
+                if(ev.status === 'cancelado') badgeColor = 'bg-red-100 text-red-800';
+
+                const tr = document.createElement('tr');
+                tr.className = "hover:bg-slate-50 transition";
+                tr.innerHTML = `
+                    <td class="p-4 whitespace-nowrap font-bold text-slate-700">${dataFmt} <span class="text-slate-400 text-xs ml-1">${ev.horario_inicio.substring(0,5)}</span></td>
+                    <td class="p-4">
+                        <div class="font-semibold text-slate-800">${ev.cliente_nome}</div>
+                        <div class="text-xs text-slate-500">${ev.cliente_telefone}</div>
+                    </td>
+                    <td class="p-4 text-slate-600">${ev.pacote_escolhido}</td>
+                    <td class="p-4 font-semibold text-green-600">R$ ${parseFloat(ev.valor_total).toLocaleString('pt-BR', {minimumFractionDigits:2})}</td>
+                    <td class="p-4">
+                        <span class="px-2 py-1 rounded-full text-xs font-bold ${badgeColor} uppercase tracking-wider">${ev.status}</span>
+                    </td>
+                    <td class="p-4 text-right">
+                        <select onchange="alterarStatus('${ev.id}', this.value)" class="text-xs border rounded p-1 bg-white outline-none">
+                            <option value="">Alterar Status</option>
+                            <option value="pendente">Pendente</option>
+                            <option value="confirmado">Confirmado</option>
+                            <option value="cancelado">Cancelado</option>
+                        </select>
+                        <button onclick="chamarWhatsapp('${ev.cliente_telefone}', '${ev.cliente_nome}')" class="ml-2 text-green-600 hover:text-green-800" title="Chamar no WhatsApp">
+                            <i class="fa-brands fa-whatsapp text-lg"></i>
+                        </button>
+                    </td>
+                `;
+                tbody.appendChild(tr);
+            });
+        }
+
+        async function alterarStatus(id, novoStatus) {
+            if(!novoStatus) return;
+            try {
+                const { error } = await supabaseClient.from('eventos_sportbar').update({ status: novoStatus }).eq('id', id);
+                if(error) throw error;
+                carregarDados();
+            } catch(e) { alert('Erro ao atualizar status'); }
+        }
+
+        function chamarWhatsapp(telefone, nome) {
+            const num = telefone.replace(/\D/g, '');
+            const msg = `Olá ${nome}, tudo bem? Aqui é do SportBar Fest.`;
+            window.open(`https://api.whatsapp.com/send?phone=${num}&text=${encodeURIComponent(msg)}`, '_blank');
+        }
+    </script>
+</body>
+</html>

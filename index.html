@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SportBar Fest - Locação para Eventos</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <style>
+        html { scroll-behavior: smooth; }
+        .bg-pattern { background-image: radial-gradient(#16a34a 1px, transparent 1px); background-size: 20px 20px; background-color: #f0fdf4; }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 font-sans antialiased">
+
+    <!-- Header / Hero -->
+    <header class="bg-green-600 text-white shadow-lg">
+        <div class="max-w-6xl mx-auto px-4 py-16 sm:py-24 text-center">
+            <h1 class="text-4xl sm:text-6xl font-extrabold tracking-tight mb-4 uppercase text-yellow-300 drop-shadow-md">
+                SportBar Fest
+            </h1>
+            <p class="text-lg sm:text-2xl font-medium mb-8">O melhor espaço para a sua festa e diversão garantida!</p>
+            <div class="flex justify-center gap-4 text-sm font-semibold mb-8">
+                <span class="bg-white/20 px-4 py-2 rounded-full"><i class="fa-solid fa-users"></i> Até 120 Pessoas</span>
+                <span class="bg-white/20 px-4 py-2 rounded-full"><i class="fa-solid fa-futbol"></i> Quadra Society</span>
+                <span class="bg-white/20 px-4 py-2 rounded-full"><i class="fa-solid fa-snowflake"></i> Salão Climatizado</span>
+            </div>
+            <a href="#reserva" class="inline-block bg-yellow-400 hover:bg-yellow-300 text-green-900 font-bold text-lg px-8 py-4 rounded-xl shadow-lg transition transform hover:scale-105">
+                Faça sua Reserva Já
+            </a>
+        </div>
+    </header>
+
+    <!-- Infraestrutura -->
+    <section class="py-16 bg-white">
+        <div class="max-w-6xl mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center text-green-700 mb-10">Estrutura 100% Completa</h2>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+                <div class="p-6 bg-slate-50 rounded-2xl border border-slate-100 shadow-sm">
+                    <i class="fa-solid fa-temperature-arrow-down text-3xl text-blue-500 mb-3"></i>
+                    <h3 class="font-bold">1 Freezer Cervejeiro</h3>
+                </div>
+                <div class="p-6 bg-slate-50 rounded-2xl border border-slate-100 shadow-sm">
+                    <i class="fa-solid fa-fire-burner text-3xl text-orange-500 mb-3"></i>
+                    <h3 class="font-bold">Forno & Fogão Industrial</h3>
+                </div>
+                <div class="p-6 bg-slate-50 rounded-2xl border border-slate-100 shadow-sm">
+                    <i class="fa-solid fa-chess-board text-3xl text-green-600 mb-3"></i>
+                    <h3 class="font-bold">15 Jogos de Mesa</h3>
+                </div>
+                <div class="p-6 bg-slate-50 rounded-2xl border border-slate-100 shadow-sm">
+                    <i class="fa-solid fa-tv text-3xl text-slate-800 mb-3"></i>
+                    <h3 class="font-bold">2 TVs 55" c/ Youtube</h3>
+                </div>
+            </div>
+            <p class="text-center text-slate-500 mt-6 text-sm">Também inclui: Vestiários Masc/Fem, Cozinha, Churrasqueira, Chapa a gás e Som Ambiente.</p>
+        </div>
+    </section>
+
+    <!-- Pacotes -->
+    <section class="py-16 bg-pattern">
+        <div class="max-w-6xl mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center text-green-700 mb-12">Nossos Pacotes</h2>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                
+                <!-- Pacote Básico -->
+                <div class="bg-white rounded-3xl shadow-xl overflow-hidden border-2 border-green-500 flex flex-col relative">
+                    <div class="bg-green-600 p-6 text-center text-white">
+                        <h3 class="text-2xl font-bold uppercase">Locação Padrão</h3>
+                        <p class="text-green-100 text-sm">Quadra Society + Salão</p>
+                    </div>
+                    <div class="p-6 flex-grow">
+                        <ul class="space-y-3 text-slate-600 text-sm mb-6">
+                            <li><i class="fa-solid fa-check text-green-500 mr-2"></i> Quadra Society Liberada</li>
+                            <li><i class="fa-solid fa-check text-green-500 mr-2"></i> Salão Climatizado p/ 120 pessoas</li>
+                            <li><i class="fa-solid fa-check text-green-500 mr-2"></i> Toda infraestrutura da cozinha</li>
+                        </ul>
+                        <div class="space-y-3">
+                            <label class="flex justify-between items-center p-3 border rounded-lg cursor-pointer hover:bg-slate-50">
+                                <div><input type="radio" name="pacote" value="Padrão 4h|1200" class="mr-2"> <strong>4 Horas</strong></div>
+                                <span class="text-green-700 font-bold">R$ 1.200*</span>
+                            </label>
+                            <label class="flex justify-between items-center p-3 border rounded-lg cursor-pointer hover:bg-slate-50">
+                                <div><input type="radio" name="pacote" value="Padrão 6h|1400" class="mr-2"> <strong>6 Horas</strong></div>
+                                <span class="text-green-700 font-bold">R$ 1.400*</span>
+                            </label>
+                        </div>
+                        <p class="text-[10px] text-slate-400 mt-2">* Valores já incluem a taxa de limpeza obrigatória de R$ 100,00.</p>
+                    </div>
+                </div>
+
+                <!-- Pacote Kids -->
+                <div class="bg-white rounded-3xl shadow-xl overflow-hidden border-2 border-yellow-400 flex flex-col relative transform md:-translate-y-4">
+                    <div class="absolute top-0 right-0 bg-yellow-400 text-green-900 text-xs font-bold px-3 py-1 rounded-bl-lg">MAIS POPULAR</div>
+                    <div class="bg-yellow-400 p-6 text-center text-green-900">
+                        <h3 class="text-2xl font-bold uppercase">Pacote Kids</h3>
+                        <p class="text-green-800 text-sm">Ideal para aniversários infantis</p>
+                    </div>
+                    <div class="p-6 flex-grow">
+                        <ul class="space-y-3 text-slate-600 text-sm mb-6">
+                            <li><i class="fa-solid fa-check text-green-500 mr-2"></i> <strong>Área Kids Liberada</strong></li>
+                            <li><i class="fa-solid fa-check text-green-500 mr-2"></i> Quadra Society Liberada</li>
+                            <li><i class="fa-solid fa-check text-green-500 mr-2"></i> Salão Climatizado p/ 120 pessoas</li>
+                        </ul>
+                        <div class="space-y-3">
+                            <label class="flex justify-between items-center p-3 border border-yellow-200 bg-yellow-50 rounded-lg cursor-pointer">
+                                <div><input type="radio" name="pacote" value="Kids 4h|1800" class="mr-2"> <strong>4 Horas</strong></div>
+                                <span class="text-green-700 font-bold">R$ 1.800</span>
+                            </label>
+                            <label class="flex justify-between items-center p-3 border border-yellow-200 bg-yellow-50 rounded-lg cursor-pointer">
+                                <div><input type="radio" name="pacote" value="Kids 6h|2100" class="mr-2"> <strong>6 Horas</strong></div>
+                                <span class="text-green-700 font-bold">R$ 2.100</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Pacote Alegria (Buffet) -->
+                <div class="bg-white rounded-3xl shadow-xl overflow-hidden border-2 border-pink-500 flex flex-col relative">
+                    <div class="bg-gradient-to-r from-pink-500 to-purple-500 p-6 text-center text-white">
+                        <h3 class="text-2xl font-bold uppercase">Pacote Alegria</h3>
+                        <p class="text-pink-100 text-sm">Festa Completa (Buffet + Decoração)</p>
+                    </div>
+                    <div class="p-6 flex-grow">
+                        <ul class="space-y-2 text-slate-600 text-xs mb-4">
+                            <li><i class="fa-solid fa-check text-pink-500 mr-2"></i> <strong>Decoração:</strong> +500 balões e tema</li>
+                            <li><i class="fa-solid fa-check text-pink-500 mr-2"></i> <strong>Comida:</strong> Salgadinhos (10 opções), Massa, Fricassê, Doces, Mini Pizza</li>
+                            <li><i class="fa-solid fa-check text-pink-500 mr-2"></i> <strong>Bebida:</strong> Água, suco e refrigerante</li>
+                            <li><i class="fa-solid fa-check text-pink-500 mr-2"></i> <strong>Equipe:</strong> Garçons, Recepcionista, Monitores</li>
+                        </ul>
+                        <p class="text-center font-bold text-sm mb-3">Duração: 4 Horas</p>
+                        <div class="space-y-3">
+                            <label class="flex justify-between items-center p-3 border rounded-lg cursor-pointer hover:bg-slate-50">
+                                <div><input type="radio" name="pacote" value="Alegria 50 Pessoas|5500" class="mr-2"> <strong>50 Pessoas</strong></div>
+                                <span class="text-pink-600 font-bold">R$ 5.500</span>
+                            </label>
+                            <label class="flex justify-between items-center p-3 border rounded-lg cursor-pointer hover:bg-slate-50">
+                                <div><input type="radio" name="pacote" value="Alegria 60 Pessoas|5990" class="mr-2"> <strong>60 Pessoas</strong></div>
+                                <span class="text-pink-600 font-bold">R$ 5.990</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Formulário de Reserva -->
+    <section id="reserva" class="py-16 bg-white">
+        <div class="max-w-3xl mx-auto px-4">
+            <div class="bg-white rounded-3xl shadow-2xl p-8 border border-slate-100">
+                <h2 class="text-3xl font-bold text-center text-slate-800 mb-2">Solicitar Reserva</h2>
+                <p class="text-center text-slate-500 mb-8">Selecione uma data e nos envie sua solicitação pelo WhatsApp.</p>
+                
+                <form id="form-reserva" onsubmit="enviarReserva(event)" class="space-y-6">
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div>
+                            <label class="block text-sm font-bold text-slate-700 mb-2">Seu Nome Completo</label>
+                            <input type="text" id="cli_nome" required class="w-full px-4 py-3 rounded-xl border border-slate-300 focus:border-green-500 focus:ring-2 focus:ring-green-200 outline-none transition">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-bold text-slate-700 mb-2">WhatsApp</label>
+                            <input type="tel" id="cli_tel" placeholder="(31) 99999-9999" required class="w-full px-4 py-3 rounded-xl border border-slate-300 focus:border-green-500 focus:ring-2 focus:ring-green-200 outline-none transition">
+                        </div>
+                    </div>
+
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div>
+                            <label class="block text-sm font-bold text-slate-700 mb-2">Data do Evento</label>
+                            <input type="date" id="cli_data" required class="w-full px-4 py-3 rounded-xl border border-slate-300 focus:border-green-500 focus:ring-2 focus:ring-green-200 outline-none transition">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-bold text-slate-700 mb-2">Horário de Início</label>
+                            <input type="time" id="cli_hora" required class="w-full px-4 py-3 rounded-xl border border-slate-300 focus:border-green-500 focus:ring-2 focus:ring-green-200 outline-none transition">
+                        </div>
+                    </div>
+
+                    <div id="resumo-box" class="bg-green-50 border border-green-200 rounded-xl p-4 hidden">
+                        <h4 class="font-bold text-green-800 mb-2">Resumo do Pacote:</h4>
+                        <p id="resumo-texto" class="text-green-700"></p>
+                    </div>
+
+                    <button type="submit" class="w-full bg-green-600 hover:bg-green-500 text-white font-bold py-4 rounded-xl shadow-lg transition-all flex justify-center items-center gap-2 text-lg">
+                        <i class="fa-brands fa-whatsapp text-2xl"></i> Enviar Solicitação de Reserva
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-slate-900 text-slate-400 text-center py-8 text-sm">
+        <p>© 2026 SportBar Fest. Todos os direitos reservados.</p>
+        <p class="mt-2"><i class="fa-brands fa-instagram"></i> @sportbh</p>
+    </footer>
+
+    <script>
+        // Supabase Keys inseridas conforme solicitado
+        const SUPABASE_URL = 'https://doecoosuqibzdsyadsyg.supabase.co'; 
+        const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImRvZWNvb3N1cWliemRzeWFkc3lnIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODk5MjQwMDAsImV4cCI6MjEwNTUwMDAwMH0.M2-NrLZQv-DqTtsIp4DbFHzgTjUENCA5X1ZPdDlmhPQ';
+        const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+
+        // O Telefone definido na sua regra
+        const NUMERO_WHATSAPP = "553191627597"; 
+
+        // Bloquear datas passadas no calendário
+        document.addEventListener('DOMContentLoaded', () => {
+            const hoje = new Date().toISOString().split('T')[0];
+            document.getElementById('cli_data').min = hoje;
+        });
+
+        // Atualizar resumo ao selecionar pacote
+        const radios = document.querySelectorAll('input[name="pacote"]');
+        radios.forEach(radio => {
+            radio.addEventListener('change', () => {
+                const [nome, preco] = radio.value.split('|');
+                const box = document.getElementById('resumo-box');
+                const texto = document.getElementById('resumo-texto');
+                box.classList.remove('hidden');
+                texto.innerHTML = `Pacote Selecionado: <strong>${nome}</strong> <br> Valor Total: <strong>R$ ${parseFloat(preco).toLocaleString('pt-BR', {minimumFractionDigits: 2})}</strong>`;
+            });
+        });
+
+        async function enviarReserva(e) {
+            e.preventDefault();
+            
+            const pacoteSel = document.querySelector('input[name="pacote"]:checked');
+            if(!pacoteSel) {
+                alert("Por favor, selecione um pacote acima antes de agendar.");
+                return;
+            }
+
+            const [nomePacote, preco] = pacoteSel.value.split('|');
+            const nome = document.getElementById('cli_nome').value;
+            const tel = document.getElementById('cli_tel').value;
+            const data = document.getElementById('cli_data').value;
+            const hora = document.getElementById('cli_hora').value;
+
+            // Salvar no Banco de Dados
+            try {
+                const { error } = await supabaseClient.from('eventos_sportbar').insert([{
+                    cliente_nome: nome,
+                    cliente_telefone: tel,
+                    pacote_escolhido: nomePacote,
+                    data_evento: data,
+                    horario_inicio: hora,
+                    valor_total: parseFloat(preco),
+                    status: 'pendente'
+                }]);
+
+                if(error) throw error;
+
+                // Redirecionar para o WhatsApp
+                const dataFmt = data.split('-').reverse().join('/');
+                const msg = `Olá SportBar Fest! Gostaria de solicitar uma reserva.\n\n👤 *Nome:* ${nome}\n📅 *Data:* ${dataFmt}\n⏰ *Início:* ${hora}\n🎉 *Pacote:* ${nomePacote}\n💰 *Valor Estimado:* R$ ${parseFloat(preco).toFixed(2)}\n\nPodemos confirmar a disponibilidade?`;
+                
+                window.open(`https://api.whatsapp.com/send?phone=${NUMERO_WHATSAPP}&text=${encodeURIComponent(msg)}`, '_blank');
+                
+                // Limpar formulário
+                document.getElementById('form-reserva').reset();
+                document.getElementById('resumo-box').classList.add('hidden');
+
+            } catch (err) {
+                alert("Erro ao enviar reserva. Tente novamente.");
+                console.error(err);
+            }
+        }
+    </script>
+</body>
+</html>
