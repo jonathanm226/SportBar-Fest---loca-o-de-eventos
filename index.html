@@ -1,335 +1,236 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SportBar Fest - Locação para Eventos</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-    <style>
-        html { scroll-behavior: smooth; }
-        .bg-pattern { background-image: radial-gradient(#16a34a 1px, transparent 1px); background-size: 20px 20px; background-color: #f0fdf4; }
-        .hero-gradient { background: radial-gradient(circle at center, #0f291e 0%, #050e0a 100%); }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SportBar Fest – Salão de Festas e Quadra Society</title>
+<meta name="description" content="Salão de festas com quadra society, área kids e buffet completo. Solicite sua reserva pelo WhatsApp.">
+<meta property="og:title" content="SportBar Fest – Salão de Festas">
+<meta property="og:description" content="Quadra society, área kids e buffet. Reserve sua data.">
+<meta property="og:image" content="logo.jpeg">
+<link rel="icon" href="logo.jpeg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<style>
+html{scroll-behavior:smooth;scroll-padding-top:70px}
+body{font-family:'Barlow',sans-serif}
+.fd{font-family:'Barlow Condensed',sans-serif;letter-spacing:.01em}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+details>summary{cursor:pointer;list-style:none}details>summary::-webkit-details-marker{display:none}
+details[open] .chev{transform:rotate(180deg)}
+</style>
 </head>
-<body class="bg-slate-50 text-slate-800 font-sans antialiased">
+<body class="bg-stone-50 text-slate-800 antialiased">
 
-    <!-- Header / Hero Personalizado e Profissional -->
-    <header class="hero-gradient text-white shadow-2xl relative overflow-hidden border-b-4 border-green-500">
-        <!-- Detalhes visuais de fundo -->
-        <div class="absolute inset-0 opacity-10 bg-[radial-gradient(#22c55e_1px,transparent_1px)] [background-size:16px_16px]"></div>
-        
-        <div class="max-w-6xl mx-auto px-4 py-16 sm:py-24 text-center flex flex-col items-center relative z-10">
-            <!-- Logo Oficial com borda iluminada -->
-            <div class="w-36 h-36 sm:w-44 sm:h-44 mb-6 rounded-full overflow-hidden border-4 border-green-400 shadow-[0_0_30px_rgba(34,197,94,0.4)] bg-black flex items-center justify-center transform hover:scale-105 transition duration-300">
-                <img src="logo.jpeg" alt="SportBar Fest Logo" class="w-full h-full object-cover">
-            </div>
+<nav class="sticky top-0 z-40 bg-emerald-950/95 backdrop-blur text-white border-b border-emerald-800">
+  <div class="max-w-6xl mx-auto px-4 h-14 flex items-center justify-between">
+    <a href="#topo" class="fd text-2xl font-bold text-yellow-300 flex items-center gap-2"><img src="logo.jpeg" alt="" class="w-8 h-8 rounded-full object-cover">SportBar Fest</a>
+    <div class="hidden md:flex gap-6 text-sm font-medium">
+      <a href="#espaco" class="hover:text-yellow-300">O espaço</a><a href="#pacotes" class="hover:text-yellow-300">Pacotes</a><a href="#como" class="hover:text-yellow-300">Como funciona</a><a href="#faq" class="hover:text-yellow-300">Dúvidas</a>
+    </div>
+    <a href="#reserva" class="bg-yellow-400 hover:bg-yellow-300 text-emerald-950 font-bold text-sm px-4 py-2 rounded-lg">Reservar</a>
+  </div>
+</nav>
 
-            <span class="bg-green-500/20 text-green-400 text-xs sm:text-sm font-bold uppercase tracking-widest px-4 py-1.5 rounded-full mb-3 border border-green-500/30">
-                Salão de Festas & Quadra Society
-            </span>
+<header id="topo" class="relative text-white bg-emerald-950">
+  <img src="foto1.jpeg" alt="Fachada do SportBar" class="absolute inset-0 w-full h-full object-cover opacity-30">
+  <div class="absolute inset-0 bg-gradient-to-t from-emerald-950 via-emerald-950/70 to-emerald-950/30"></div>
+  <div class="relative max-w-6xl mx-auto px-4 py-20 sm:py-32 flex flex-col items-start">
+    <h1 class="fd text-5xl sm:text-7xl font-extrabold leading-[.95] max-w-3xl">A festa tem quadra de society, área kids e buffet completo.</h1>
+    <p class="text-lg sm:text-xl text-emerald-100 mt-5 max-w-xl">Aniversários e confraternizações para até 120 pessoas, em um espaço pensado para criança brincar e adulto aproveitar.</p>
+    <div class="flex flex-wrap gap-2 mt-6 text-sm font-semibold">
+      <span class="bg-white/10 border border-white/20 px-3 py-1.5 rounded-full"><i class="fa-solid fa-users mr-1.5 text-yellow-300"></i>Até 120 pessoas</span>
+      <span class="bg-white/10 border border-white/20 px-3 py-1.5 rounded-full"><i class="fa-solid fa-futbol mr-1.5 text-yellow-300"></i>Quadra society</span>
+      <span class="bg-white/10 border border-white/20 px-3 py-1.5 rounded-full"><i class="fa-solid fa-child-reaching mr-1.5 text-yellow-300"></i>Área kids</span>
+    </div>
+    <div class="flex flex-wrap gap-3 mt-8">
+      <a href="#pacotes" class="bg-yellow-400 hover:bg-yellow-300 text-emerald-950 font-bold text-lg px-7 py-3.5 rounded-xl">Ver pacotes e valores</a>
+      <a href="#espaco" class="border border-white/40 hover:bg-white/10 font-semibold text-lg px-7 py-3.5 rounded-xl">Conhecer o espaço</a>
+    </div>
+  </div>
+</header>
 
-            <h1 class="text-4xl sm:text-6xl font-extrabold tracking-tight mb-4 uppercase text-yellow-300 drop-shadow-[0_2px_10px_rgba(234,179,8,0.3)]">
-                SportBar Fest
-            </h1>
-            
-            <p class="text-lg sm:text-2xl font-medium text-slate-300 mb-8 max-w-2xl">
-                O espaço completo para a sua festa, aniversário e momentos de diversão garantida!
-            </p>
+<section class="py-14 bg-white">
+  <div class="max-w-6xl mx-auto px-4">
+    <h2 class="fd text-4xl font-bold text-emerald-800 mb-8">Estrutura completa para o dia da festa</h2>
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+      <div class="p-5 rounded-xl bg-emerald-50"><i class="fa-solid fa-temperature-arrow-down text-2xl text-sky-600 mb-2"></i><p class="font-semibold">1 freezer cervejeiro</p></div>
+      <div class="p-5 rounded-xl bg-emerald-50"><i class="fa-solid fa-fire-burner text-2xl text-orange-600 mb-2"></i><p class="font-semibold">Forno e fogão industrial</p></div>
+      <div class="p-5 rounded-xl bg-emerald-50"><i class="fa-solid fa-chess-board text-2xl text-emerald-700 mb-2"></i><p class="font-semibold">15 jogos de mesa</p></div>
+      <div class="p-5 rounded-xl bg-emerald-50"><i class="fa-solid fa-tv text-2xl text-slate-700 mb-2"></i><p class="font-semibold">2 TVs 55" com YouTube</p></div>
+    </div>
+    <p class="text-slate-500 mt-5 text-sm">Também incluso: vestiários masculino e feminino, cozinha, churrasqueira, chapa a gás e som ambiente.</p>
+  </div>
+</section>
 
-            <div class="flex flex-wrap justify-center gap-3 sm:gap-4 text-sm font-semibold mb-10">
-                <span class="bg-slate-800/80 border border-slate-700 px-4 py-2 rounded-full text-green-400 flex items-center gap-2"><i class="fa-solid fa-users"></i> Até 120 Pessoas</span>
-                <span class="bg-slate-800/80 border border-slate-700 px-4 py-2 rounded-full text-green-400 flex items-center gap-2"><i class="fa-solid fa-futbol"></i> Quadra Society</span>
-                <span class="bg-slate-800/80 border border-slate-700 px-4 py-2 rounded-full text-green-400 flex items-center gap-2"><i class="fa-solid fa-snowflake"></i> Salão Climatizado</span>
-            </div>
+<section id="espaco" class="py-14 bg-emerald-950 text-white">
+  <div class="max-w-6xl mx-auto px-4">
+    <h2 class="fd text-4xl font-bold mb-8">Conheça o espaço</h2>
+    <div class="grid grid-cols-2 md:grid-cols-3 gap-3" id="galeria"></div>
+  </div>
+</section>
+<div id="lightbox" class="hidden fixed inset-0 z-50 bg-black/90 items-center justify-center p-4 cursor-zoom-out"><img id="lb-img" alt="" class="max-h-full max-w-full rounded-lg"></div>
 
-            <a href="#reserva" class="inline-block bg-yellow-400 hover:bg-yellow-300 text-slate-950 font-extrabold text-lg px-8 py-4 rounded-xl shadow-[0_0_20px_rgba(250,204,21,0.4)] transition transform hover:scale-105">
-                Faça sua Reserva Já
-            </a>
+<section id="pacotes" class="py-14 bg-stone-100">
+  <div class="max-w-6xl mx-auto px-4">
+    <h2 class="fd text-4xl font-bold text-emerald-800 mb-2">Pacotes</h2>
+    <p class="text-slate-600 mb-8">Escolha uma opção e ela já vai para o formulário de reserva.</p>
+    <div id="lista-pacotes" class="grid md:grid-cols-3 gap-6 items-start"></div>
+  </div>
+</section>
+
+<section id="como" class="py-14 bg-white">
+  <div class="max-w-4xl mx-auto px-4">
+    <h2 class="fd text-4xl font-bold text-emerald-800 mb-8">Como funciona a reserva</h2>
+    <ol class="grid md:grid-cols-3 gap-6">
+      <li><p class="fd text-2xl font-bold text-emerald-700">1. Escolha o pacote</p><p class="text-slate-600 mt-1">Selecione o pacote e o tempo de festa que combinam com você.</p></li>
+      <li><p class="fd text-2xl font-bold text-emerald-700">2. Envie a solicitação</p><p class="text-slate-600 mt-1">Preencha data e horário. Seu pedido chega até nós e abre o WhatsApp.</p></li>
+      <li><p class="fd text-2xl font-bold text-emerald-700">3. Receba a confirmação</p><p class="text-slate-600 mt-1">Verificamos a data e confirmamos a reserva com você pelo WhatsApp.</p></li>
+    </ol>
+  </div>
+</section>
+
+<section id="reserva" class="py-14 bg-emerald-50">
+  <div class="max-w-2xl mx-auto px-4">
+    <div class="bg-white rounded-2xl shadow-xl p-6 sm:p-8">
+      <h2 class="fd text-4xl font-bold text-slate-800">Solicitar reserva</h2>
+      <p class="text-slate-500 mb-6">Sem compromisso: a data só fica reservada após a nossa confirmação.</p>
+      <div id="ok" class="hidden text-center py-6">
+        <i class="fa-solid fa-circle-check text-5xl text-emerald-600 mb-3"></i>
+        <p class="fd text-3xl font-bold">Solicitação enviada</p>
+        <p class="text-slate-600 mt-1">Abrimos o WhatsApp para você finalizar com a nossa equipe.</p>
+        <a id="ok-link" target="_blank" class="inline-block mt-4 bg-emerald-600 text-white font-bold px-6 py-3 rounded-xl">Abrir WhatsApp de novo</a>
+        <button onclick="novaReserva()" class="block mx-auto mt-3 text-sm text-slate-500 underline">Fazer outra solicitação</button>
+      </div>
+      <form id="form-reserva" onsubmit="enviarReserva(event)" class="space-y-4">
+        <div id="resumo-box" class="hidden bg-emerald-50 border border-emerald-200 rounded-xl p-4 text-emerald-900"><p id="resumo-texto"></p></div>
+        <div class="grid sm:grid-cols-2 gap-4">
+          <label class="block text-sm font-semibold">Seu nome completo<input id="cli_nome" required class="mt-1 w-full px-4 py-3 rounded-xl border border-slate-300 focus:border-emerald-500 focus:ring-2 focus:ring-emerald-200 outline-none font-normal"></label>
+          <label class="block text-sm font-semibold">WhatsApp<input id="cli_tel" type="tel" required placeholder="(31) 99999-9999" maxlength="15" class="mt-1 w-full px-4 py-3 rounded-xl border border-slate-300 focus:border-emerald-500 focus:ring-2 focus:ring-emerald-200 outline-none font-normal"></label>
+          <label class="block text-sm font-semibold">Data do evento<input id="cli_data" type="date" required class="mt-1 w-full px-4 py-3 rounded-xl border border-slate-300 focus:border-emerald-500 focus:ring-2 focus:ring-emerald-200 outline-none font-normal"></label>
+          <label class="block text-sm font-semibold">Horário de início<input id="cli_hora" type="time" required class="mt-1 w-full px-4 py-3 rounded-xl border border-slate-300 focus:border-emerald-500 focus:ring-2 focus:ring-emerald-200 outline-none font-normal"></label>
+          <label class="block text-sm font-semibold">Número de convidados<input id="cli_conv" type="number" min="1" max="120" class="mt-1 w-full px-4 py-3 rounded-xl border border-slate-300 focus:border-emerald-500 focus:ring-2 focus:ring-emerald-200 outline-none font-normal"></label>
+          <label class="block text-sm font-semibold">Tema ou observações<input id="cli_obs" class="mt-1 w-full px-4 py-3 rounded-xl border border-slate-300 focus:border-emerald-500 focus:ring-2 focus:ring-emerald-200 outline-none font-normal"></label>
         </div>
-    </header>
+        <p id="msg-data" class="hidden text-sm font-semibold text-red-600"></p>
+        <button id="btn-enviar" type="submit" class="w-full bg-emerald-600 hover:bg-emerald-500 disabled:opacity-60 text-white font-bold py-4 rounded-xl text-lg flex justify-center items-center gap-2"><i class="fa-brands fa-whatsapp text-2xl"></i><span>Enviar solicitação</span></button>
+      </form>
+    </div>
+  </div>
+</section>
 
-    <!-- Infraestrutura -->
-    <section class="py-16 bg-white">
-        <div class="max-w-6xl mx-auto px-4">
-            <h2 class="text-3xl font-bold text-center text-green-700 mb-10">Estrutura 100% Completa</h2>
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
-                <div class="p-6 bg-slate-50 rounded-2xl border border-slate-100 shadow-sm">
-                    <i class="fa-solid fa-temperature-arrow-down text-3xl text-blue-500 mb-3"></i>
-                    <h3 class="font-bold">1 Freezer Cervejeiro</h3>
-                </div>
-                <div class="p-6 bg-slate-50 rounded-2xl border border-slate-100 shadow-sm">
-                    <i class="fa-solid fa-fire-burner text-3xl text-orange-500 mb-3"></i>
-                    <h3 class="font-bold">Forno & Fogão Industrial</h3>
-                </div>
-                <div class="p-6 bg-slate-50 rounded-2xl border border-slate-100 shadow-sm">
-                    <i class="fa-solid fa-chess-board text-3xl text-green-600 mb-3"></i>
-                    <h3 class="font-bold">15 Jogos de Mesa</h3>
-                </div>
-                <div class="p-6 bg-slate-50 rounded-2xl border border-slate-100 shadow-sm">
-                    <i class="fa-solid fa-tv text-3xl text-slate-800 mb-3"></i>
-                    <h3 class="font-bold">2 TVs 55" c/ Youtube</h3>
-                </div>
-            </div>
-            <p class="text-center text-slate-500 mt-6 text-sm">Também inclui: Vestiários Masc/Fem, Cozinha, Churrasqueira, Chapa a gás e Som Ambiente.</p>
-        </div>
-    </section>
+<section id="faq" class="py-14 bg-white">
+  <div class="max-w-3xl mx-auto px-4">
+    <h2 class="fd text-4xl font-bold text-emerald-800 mb-6">Dúvidas frequentes</h2>
+    <div class="divide-y border-y" id="faq-lista"></div>
+    <p class="text-xs text-slate-400 mt-3">Textos de exemplo: ajuste com as regras reais do salão.</p>
+  </div>
+</section>
 
-    <!-- Carrossel de Demonstração do Espaço -->
-    <section class="py-12 bg-slate-100">
-        <div class="max-w-5xl mx-auto px-4">
-            <h2 class="text-3xl font-bold text-center text-green-700 mb-8">Conheça Nosso Espaço</h2>
-            
-            <div class="relative rounded-3xl overflow-hidden shadow-2xl bg-black group">
-                <div id="carousel-container" class="relative h-[300px] sm:h-[500px] w-full flex items-center justify-center">
-                    <img src="carrocel 1.jpeg" class="carousel-item absolute inset-0 w-full h-full object-cover transition-opacity duration-700 opacity-100" alt="Fachada SportBar">
-                    <img src="carrocel 2.jpeg" class="carousel-item absolute inset-0 w-full h-full object-cover transition-opacity duration-700 opacity-0" alt="Área Kids e Jogos">
-                    <img src="carrocel 3.jpeg" class="carousel-item absolute inset-0 w-full h-full object-cover transition-opacity duration-700 opacity-0" alt="Estrutura Interna">
-                    <img src="carrocel 4.jpeg" class="carousel-item absolute inset-0 w-full h-full object-cover transition-opacity duration-700 opacity-0" alt="Decoração de Festas">
-                    <img src="carrocel 6.jpeg" class="carousel-item absolute inset-0 w-full h-full object-cover transition-opacity duration-700 opacity-0" alt="Mesa de Aniversário">
-                    <img src="carrocel 7.jpeg" class="carousel-item absolute inset-0 w-full h-full object-cover transition-opacity duration-700 opacity-0" alt="Brinquedos e Lazer">
-                    <img src="carrocel 8.jpeg" class="carousel-item absolute inset-0 w-full h-full object-cover transition-opacity duration-700 opacity-0" alt="Entrada Decorada">
-                </div>
+<footer class="bg-emerald-950 text-emerald-100 py-10 text-sm">
+  <div class="max-w-6xl mx-auto px-4 flex flex-col sm:flex-row justify-between gap-4">
+    <div><p class="fd text-2xl text-yellow-300 font-bold">SportBar Fest</p><p>Salão de festas &amp; quadra society</p></div>
+    <div class="space-y-1"><p><i class="fa-solid fa-phone mr-2"></i>(31) 3024-3870</p><p><i class="fa-brands fa-instagram mr-2"></i>@sportbar.bh</p><p class="text-emerald-400/70">© 2026 SportBar Fest</p></div>
+  </div>
+</footer>
 
-                <button onclick="mudarSlide(-1)" class="absolute left-4 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/80 text-white w-12 h-12 rounded-full flex items-center justify-center text-xl transition z-10">
-                    <i class="fa-solid fa-chevron-left"></i>
-                </button>
-                <button onclick="mudarSlide(1)" class="absolute right-4 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/80 text-white w-12 h-12 rounded-full flex items-center justify-center text-xl transition z-10">
-                    <i class="fa-solid fa-chevron-right"></i>
-                </button>
-            </div>
-        </div>
-    </section>
+<a href="#" id="wpp-flutuante" target="_blank" aria-label="Falar no WhatsApp" class="fixed bottom-5 right-5 z-40 bg-green-500 hover:bg-green-400 text-white w-14 h-14 rounded-full shadow-xl flex items-center justify-center text-3xl"><i class="fa-brands fa-whatsapp"></i></a>
 
-    <!-- Pacotes -->
-    <section class="py-16 bg-pattern">
-        <div class="max-w-6xl mx-auto px-4">
-            <h2 class="text-3xl font-bold text-center text-green-700 mb-12">Nossos Pacotes</h2>
-            
-            <div class="grid md:grid-cols-3 gap-8">
-                <!-- Pacote Básico -->
-                <div class="bg-white rounded-3xl shadow-xl overflow-hidden border-2 border-green-500 flex flex-col relative">
-                    <div class="bg-green-600 p-6 text-center text-white">
-                        <h3 class="text-2xl font-bold uppercase">Locação Padrão</h3>
-                        <p class="text-green-100 text-sm">Quadra Society + Salão</p>
-                    </div>
-                    <div class="p-6 flex-grow">
-                        <ul class="space-y-3 text-slate-600 text-sm mb-6">
-                            <li><i class="fa-solid fa-check text-green-500 mr-2"></i> Quadra Society Liberada</li>
-                            <li><i class="fa-solid fa-check text-green-500 mr-2"></i> Salão Climatizado p/ 120 pessoas</li>
-                            <li><i class="fa-solid fa-check text-green-500 mr-2"></i> Toda infraestrutura da cozinha</li>
-                        </ul>
-                        <div class="space-y-3">
-                            <label class="flex justify-between items-center p-3 border rounded-lg cursor-pointer hover:bg-slate-50">
-                                <div><input type="radio" name="pacote" value="Padrão 4h|1200" class="mr-2"> <strong>4 Horas</strong></div>
-                                <span class="text-green-700 font-bold">R$ 1.200*</span>
-                            </label>
-                            <label class="flex justify-between items-center p-3 border rounded-lg cursor-pointer hover:bg-slate-50">
-                                <div><input type="radio" name="pacote" value="Padrão 6h|1400" class="mr-2"> <strong>6 Horas</strong></div>
-                                <span class="text-green-700 font-bold">R$ 1.400*</span>
-                            </label>
-                        </div>
-                        <p class="text-[10px] text-slate-400 mt-2">* Valores já incluem a taxa de limpeza obrigatória de R$ 100,00.</p>
-                    </div>
-                </div>
+<script>
+const SUPABASE_URL='https://doecoosuqibzdsyadsyg.supabase.co';
+const SUPABASE_KEY='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImRvZWNvb3N1cWliemRzeWFkc3lnIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODk5MjQwMDAsImV4cCI6MjEwNTUwMDAwMH0.M2-NrLZQv-DqTtsIp4DbFHzgTjUENCA5X1ZPdDlmhPQ';
+const db=supabase.createClient(SUPABASE_URL,SUPABASE_KEY);
+const NUMERO_WHATSAPP="553191627597";
+document.getElementById('wpp-flutuante').href=`https://wa.me/${NUMERO_WHATSAPP}?text=${encodeURIComponent('Olá! Vim pelo site do SportBar Fest.')}`;
 
-                <!-- Pacote Kids -->
-                <div class="bg-white rounded-3xl shadow-xl overflow-hidden border-2 border-yellow-400 flex flex-col relative transform md:-translate-y-4">
-                    <div class="absolute top-0 right-0 bg-yellow-400 text-green-900 text-xs font-bold px-3 py-1 rounded-bl-lg">MAIS POPULAR</div>
-                    <div class="bg-yellow-400 p-6 text-center text-green-900">
-                        <h3 class="text-2xl font-bold uppercase">Pacote Kids</h3>
-                        <p class="text-green-800 text-sm">Ideal para aniversários infantis</p>
-                    </div>
-                    <div class="p-6 flex-grow">
-                        <ul class="space-y-3 text-slate-600 text-sm mb-6">
-                            <li><i class="fa-solid fa-check text-green-500 mr-2"></i> <strong>Área Kids Liberada</strong></li>
-                            <li><i class="fa-solid fa-check text-green-500 mr-2"></i> Quadra Society Liberada</li>
-                            <li><i class="fa-solid fa-check text-green-500 mr-2"></i> Salão Climatizado p/ 120 pessoas</li>
-                        </ul>
-                        <div class="space-y-3">
-                            <label class="flex justify-between items-center p-3 border border-yellow-200 bg-yellow-50 rounded-lg cursor-pointer">
-                                <div><input type="radio" name="pacote" value="Kids 4h|1800" class="mr-2"> <strong>4 Horas</strong></div>
-                                <span class="text-green-700 font-bold">R$ 1.800</span>
-                            </label>
-                            <label class="flex justify-between items-center p-3 border border-yellow-200 bg-yellow-50 rounded-lg cursor-pointer">
-                                <div><input type="radio" name="pacote" value="Kids 6h|2100" class="mr-2"> <strong>6 Horas</strong></div>
-                                <span class="text-green-700 font-bold">R$ 2.100</span>
-                            </label>
-                        </div>
-                    </div>
-                </div>
+// Fonte única de preços: o card, o resumo, o banco e o WhatsApp usam estes valores
+const PACOTES=[
+ {titulo:'Locação padrão',sub:'Quadra society + salão',topo:'bg-emerald-700 text-white',borda:'border-emerald-600',cor:'text-emerald-700',
+  itens:['Quadra society liberada','Salão para 120 pessoas','Toda a infraestrutura da cozinha'],
+  nota:'Valores já incluem a taxa de limpeza obrigatória de R$ 100,00.',
+  opcoes:[['Padrão 4h','4 horas',1200],['Padrão 6h','6 horas',1400]]},
+ {titulo:'Pacote kids',sub:'Ideal para aniversários infantis',topo:'bg-yellow-400 text-emerald-950',borda:'border-yellow-400',cor:'text-emerald-700',destaque:'Mais procurado',
+  itens:['Área kids liberada','Quadra society liberada','Salão para 120 pessoas'],
+  opcoes:[['Kids 4h','4 horas',1800],['Kids 6h','6 horas',2100]]},
+ {titulo:'Pacote alegria',sub:'Festa completa, com buffet e decoração',topo:'bg-red-700 text-white',borda:'border-red-600',cor:'text-red-700',
+  itens:['Decoração com +500 balões e tema','Salgadinhos (10 opções), massa, fricassê, doces e mini pizza','Água, suco e refrigerante','Garçons, recepcionista e monitores'],
+  nota:'Duração de 4 horas.',
+  opcoes:[['Alegria 50 pessoas','50 pessoas',6000],['Alegria 60 pessoas','60 pessoas',6500]]}
+];
+const FOTOS=[['foto1.jpeg','Fachada do SportBar'],['foto4.jpeg','Entrada com arco de balões'],['foto6.jpeg','Festa temática decorada'],['foto3.jpeg','Área kids e brinquedão'],['foto2.jpeg','Pebolim e brinquedos']];
+const FAQ=[['Como funciona o pagamento?','Após a confirmação da data, combinamos o sinal e o saldo pelo WhatsApp.'],['Posso levar minha própria bebida e comida?','Nos pacotes de locação, sim. Confirme os detalhes com a equipe.'],['Há tempo para montar a decoração?','Combinamos o horário de montagem junto com a confirmação da reserva.'],['Posso cancelar ou remarcar?','Sim, avise com antecedência pelo WhatsApp e vemos a melhor data.']];
+const brl=v=>'R$ '+Number(v).toLocaleString('pt-BR',{minimumFractionDigits:2});
+const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 
-                <!-- Pacote Alegria (Buffet) -->
-                <div class="bg-white rounded-3xl shadow-xl overflow-hidden border-2 border-pink-500 flex flex-col relative">
-                    <div class="bg-gradient-to-r from-pink-500 to-purple-500 p-6 text-center text-white">
-                        <h3 class="text-2xl font-bold uppercase">Pacote Alegria</h3>
-                        <p class="text-pink-100 text-sm">Festa Completa (Buffet + Decoração)</p>
-                    </div>
-                    <div class="p-6 flex-grow">
-                        <ul class="space-y-2 text-slate-600 text-xs mb-4">
-                            <li><i class="fa-solid fa-check text-pink-500 mr-2"></i> <strong>Decoração:</strong> +500 balões e tema</li>
-                            <li><i class="fa-solid fa-check text-pink-500 mr-2"></i> <strong>Comida:</strong> Salgadinhos (10 opções), Massa, Fricassê, Doces, Mini Pizza</li>
-                            <li><i class="fa-solid fa-check text-pink-500 mr-2"></i> <strong>Bebida:</strong> Água, suco e refrigerante</li>
-                            <li><i class="fa-solid fa-check text-pink-500 mr-2"></i> <strong>Equipe:</strong> Garçons, Recepcionista, Monitores</li>
-                        </ul>
-                        <p class="text-center font-bold text-sm mb-3">Duração: 4 Horas</p>
-                        <div class="space-y-3">
-                            <label class="flex justify-between items-center p-3 border rounded-lg cursor-pointer hover:bg-slate-50">
-                                <div><input type="radio" name="pacote" value="Alegria 50 Pessoas|5500" class="mr-2"> <strong>50 Pessoas</strong></div>
-                                <span class="text-pink-600 font-bold">R$ 6.000</span>
-                            </label>
-                            <label class="flex justify-between items-center p-3 border rounded-lg cursor-pointer hover:bg-slate-50">
-                                <div><input type="radio" name="pacote" value="Alegria 60 Pessoas|5990" class="mr-2"> <strong>60 Pessoas</strong></div>
-                                <span class="text-pink-600 font-bold">R$ 6.500</span>
-                            </label>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+document.getElementById('lista-pacotes').innerHTML=PACOTES.map((p,i)=>`
+ <div class="bg-white rounded-2xl shadow-lg overflow-hidden border-2 ${p.borda} ${p.destaque?'md:-translate-y-3':''}">
+  <div class="${p.topo} p-5"><h3 class="fd text-3xl font-bold">${p.titulo}</h3><p class="text-sm opacity-90">${p.sub}</p>${p.destaque?`<p class="inline-block mt-2 bg-emerald-950 text-yellow-300 text-xs font-bold px-2 py-1 rounded">${p.destaque}</p>`:''}</div>
+  <div class="p-5">
+   <ul class="space-y-2 text-sm text-slate-600 mb-5">${p.itens.map(t=>`<li><i class="fa-solid fa-check ${p.cor} mr-2"></i>${t}</li>`).join('')}</ul>
+   <div class="space-y-2">${p.opcoes.map(o=>`<label class="flex justify-between items-center p-3 border rounded-lg cursor-pointer hover:bg-slate-50 has-[:checked]:border-emerald-600 has-[:checked]:bg-emerald-50 has-[:checked]:ring-2 has-[:checked]:ring-emerald-200"><span><input type="radio" name="pacote" class="mr-2 accent-emerald-600" data-nome="${o[0]}" data-preco="${o[2]}"><strong>${o[1]}</strong></span><span class="${p.cor} font-bold">${brl(o[2]).replace(',00','')}</span></label>`).join('')}</div>
+   ${p.nota?`<p class="text-xs text-slate-500 mt-3">${p.nota}</p>`:''}
+  </div></div>`).join('');
 
-    <!-- Formulário de Reserva -->
-    <section id="reserva" class="py-16 bg-white">
-        <div class="max-w-3xl mx-auto px-4">
-            <div class="bg-white rounded-3xl shadow-2xl p-8 border border-slate-100">
-                <h2 class="text-3xl font-bold text-center text-slate-800 mb-2">Solicitar Reserva</h2>
-                <p class="text-center text-slate-500 mb-8">Selecione uma data e nos envie sua solicitação pelo WhatsApp.</p>
-                
-                <form id="form-reserva" onsubmit="enviarReserva(event)" class="space-y-6">
-                    <div class="grid md:grid-cols-2 gap-6">
-                        <div>
-                            <label class="block text-sm font-bold text-slate-700 mb-2">Seu Nome Completo</label>
-                            <input type="text" id="cli_nome" required class="w-full px-4 py-3 rounded-xl border border-slate-300 focus:border-green-500 focus:ring-2 focus:ring-green-200 outline-none transition">
-                        </div>
-                        <div>
-                            <label class="block text-sm font-bold text-slate-700 mb-2">WhatsApp</label>
-                            <input type="tel" id="cli_tel" placeholder="(31) 99999-9999" required class="w-full px-4 py-3 rounded-xl border border-slate-300 focus:border-green-500 focus:ring-2 focus:ring-green-200 outline-none transition">
-                        </div>
-                    </div>
+document.getElementById('galeria').innerHTML=FOTOS.map((f,i)=>`<button type="button" class="overflow-hidden rounded-xl ${i===0?'col-span-2 md:col-span-2':''}"  data-src="${f[0]}"><img src="${f[0]}" alt="${f[1]}" loading="lazy" class="w-full h-48 sm:h-64 object-cover hover:scale-105 transition duration-300"></button>`).join('');
+const lb=document.getElementById('lightbox');
+document.getElementById('galeria').addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;document.getElementById('lb-img').src=b.dataset.src;lb.classList.replace('hidden','flex')});
+lb.addEventListener('click',()=>lb.classList.replace('flex','hidden'));
+document.addEventListener('keydown',e=>{if(e.key==='Escape')lb.classList.replace('flex','hidden')});
 
-                    <div class="grid md:grid-cols-2 gap-6">
-                        <div>
-                            <label class="block text-sm font-bold text-slate-700 mb-2">Data do Evento</label>
-                            <input type="date" id="cli_data" required class="w-full px-4 py-3 rounded-xl border border-slate-300 focus:border-green-500 focus:ring-2 focus:ring-green-200 outline-none transition">
-                        </div>
-                        <div>
-                            <label class="block text-sm font-bold text-slate-700 mb-2">Horário de Início</label>
-                            <input type="time" id="cli_hora" required class="w-full px-4 py-3 rounded-xl border border-slate-300 focus:border-green-500 focus:ring-2 focus:ring-green-200 outline-none transition">
-                        </div>
-                    </div>
+document.getElementById('faq-lista').innerHTML=FAQ.map(f=>`<details class="py-4"><summary class="flex justify-between items-center font-semibold">${f[0]}<i class="fa-solid fa-chevron-down chev text-slate-400 transition"></i></summary><p class="text-slate-600 mt-2">${f[1]}</p></details>`).join('');
 
-                    <div id="resumo-box" class="bg-green-50 border border-green-200 rounded-xl p-4 hidden">
-                        <h4 class="font-bold text-green-800 mb-2">Resumo do Pacote:</h4>
-                        <p id="resumo-texto" class="text-green-700"></p>
-                    </div>
+// Seleção de pacote → resumo e rolagem até o formulário
+let escolhido=null;
+document.getElementById('lista-pacotes').addEventListener('change',e=>{
+ const r=e.target;if(!r.dataset.nome)return;
+ escolhido={nome:r.dataset.nome,preco:parseFloat(r.dataset.preco)};
+ document.getElementById('resumo-box').classList.remove('hidden');
+ document.getElementById('resumo-texto').innerHTML=`Pacote: <strong>${esc(escolhido.nome)}</strong> · Valor: <strong>${brl(escolhido.preco)}</strong>`;
+ setTimeout(()=>document.getElementById('reserva').scrollIntoView({behavior:'smooth'}),250);
+});
 
-                    <button type="submit" class="w-full bg-green-600 hover:bg-green-500 text-white font-bold py-4 rounded-xl shadow-lg transition-all flex justify-center items-center gap-2 text-lg">
-                        <i class="fa-brands fa-whatsapp text-2xl"></i> Enviar Solicitação de Reserva
-                    </button>
-                </form>
-            </div>
-        </div>
-    </section>
+// Máscara de telefone
+document.getElementById('cli_tel').addEventListener('input',e=>{
+ let d=e.target.value.replace(/\D/g,'').slice(0,11);
+ e.target.value=d.length>10?d.replace(/(\d\d)(\d{5})(\d{4})/,'($1) $2-$3'):d.length>6?d.replace(/(\d\d)(\d{4})(\d{0,4})/,'($1) $2-$3'):d.length>2?d.replace(/(\d\d)(\d*)/,'($1) $2'):d;
+});
 
-    <footer class="bg-slate-900 text-slate-400 text-center py-8 text-sm">
-        <p>© 2026 SportBar Fest. Todos os direitos reservados.</p>
-        <p class="mt-2"><i class="fa-brands fa-instagram"></i> @sportbh</p>
-    </footer>
+// Datas ocupadas (view pública "datas_ocupadas": veja supabase_setup.sql). Se a view não existir, o site segue funcionando.
+let ocupadas=new Set();
+const dataEl=document.getElementById('cli_data'),btn=document.getElementById('btn-enviar'),msgData=document.getElementById('msg-data');
+dataEl.min=new Date().toISOString().split('T')[0];
+db.from('datas_ocupadas').select('data_evento').then(({data,error})=>{if(!error&&data)ocupadas=new Set(data.map(d=>d.data_evento))});
+dataEl.addEventListener('change',()=>{
+ const bloq=ocupadas.has(dataEl.value);
+ msgData.textContent=bloq?'Esta data já está reservada. Escolha outro dia.':'';
+ msgData.classList.toggle('hidden',!bloq);btn.disabled=bloq;
+});
 
-    <script>
-        const SUPABASE_URL = 'https://doecoosuqibzdsyadsyg.supabase.co'; 
-        const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImRvZWNvb3N1cWliemRzeWFkc3lnIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODk5MjQwMDAsImV4cCI6MjEwNTUwMDAwMH0.M2-NrLZQv-DqTtsIp4DbFHzgTjUENCA5X1ZPdDlmhPQ';
-        const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
-
-        const NUMERO_WHATSAPP = "553191627597"; 
-
-        let currentSlide = 0;
-        const slides = document.querySelectorAll('.carousel-item');
-        
-        function mostrarSlide(index) {
-            slides.forEach((slide, i) => {
-                slide.classList.remove('opacity-100');
-                slide.classList.add('opacity-0');
-                if (i === index) {
-                    slide.classList.remove('opacity-0');
-                    slide.classList.add('opacity-100');
-                }
-            });
-        }
-
-        function mudarSlide(direcao) {
-            currentSlide += direcao;
-            if (currentSlide >= slides.length) {
-                currentSlide = 0;
-            } else if (currentSlide < 0) {
-                currentSlide = slides.length - 1;
-            }
-            mostrarSlide(currentSlide);
-        }
-
-        setInterval(() => {
-            mudarSlide(1);
-        }, 4000);
-
-        document.addEventListener('DOMContentLoaded', () => {
-            const hoje = new Date().toISOString().split('T')[0];
-            document.getElementById('cli_data').min = hoje;
-        });
-
-        const radios = document.querySelectorAll('input[name="pacote"]');
-        radios.forEach(radio => {
-            radio.addEventListener('change', () => {
-                const [nome, preco] = radio.value.split('|');
-                const box = document.getElementById('resumo-box');
-                const texto = document.getElementById('resumo-texto');
-                box.classList.remove('hidden');
-                texto.innerHTML = `Pacote Selecionado: <strong>${nome}</strong> <br> Valor Total: <strong>R$ ${parseFloat(preco).toLocaleString('pt-BR', {minimumFractionDigits: 2})}</strong>`;
-            });
-        });
-
-        async function enviarReserva(e) {
-            e.preventDefault();
-            
-            const pacoteSel = document.querySelector('input[name="pacote"]:checked');
-            if(!pacoteSel) {
-                alert("Por favor, selecione um pacote acima antes de agendar.");
-                return;
-            }
-
-            const [nomePacote, preco] = pacoteSel.value.split('|');
-            const nome = document.getElementById('cli_nome').value;
-            const tel = document.getElementById('cli_tel').value;
-            const data = document.getElementById('cli_data').value;
-            const hora = document.getElementById('cli_hora').value;
-
-            try {
-                const { error } = await supabaseClient.from('eventos_sportbar').insert([{
-                    cliente_nome: nome,
-                    cliente_telefone: tel,
-                    pacote_escolhido: nomePacote,
-                    data_evento: data,
-                    horario_inicio: hora,
-                    valor_total: parseFloat(preco),
-                    status: 'pendente'
-                }]);
-
-                if(error) throw error;
-
-                const dataFmt = data.split('-').reverse().join('/');
-                const msg = `Olá SportBar Fest! Gostaria de solicitar uma reserva.\n\n👤 *Nome:* ${nome}\n📅 *Data:* ${dataFmt}\n⏰ *Início:* ${hora}\n🎉 *Pacote:* ${nomePacote}\n💰 *Valor Estimado:* R$ ${parseFloat(preco).toFixed(2)}\n\nPodemos confirmar a disponibilidade?`;
-                
-                window.open(`https://api.whatsapp.com/send?phone=${NUMERO_WHATSAPP}&text=${encodeURIComponent(msg)}`, '_blank');
-                
-                document.getElementById('form-reserva').reset();
-                document.getElementById('resumo-box').classList.add('hidden');
-
-            } catch (err) {
-                alert("Erro ao enviar reserva. Tente novamente.");
-                console.error(err);
-            }
-        }
-    </script>
+async function enviarReserva(e){
+ e.preventDefault();
+ if(!escolhido){alert('Escolha um pacote na seção "Pacotes" antes de enviar.');document.getElementById('pacotes').scrollIntoView({behavior:'smooth'});return}
+ const v=id=>document.getElementById(id).value.trim();
+ const nome=v('cli_nome'),tel=v('cli_tel'),data=v('cli_data'),hora=v('cli_hora'),conv=v('cli_conv'),obs=v('cli_obs');
+ const w=window.open('','_blank'); // abre antes do await para não ser bloqueado no celular
+ btn.disabled=true;btn.querySelector('span').textContent='Enviando...';
+ try{
+  const {error}=await db.from('eventos_sportbar').insert([{cliente_nome:nome,cliente_telefone:tel,pacote_escolhido:escolhido.nome,data_evento:data,horario_inicio:hora,valor_total:escolhido.preco,status:'pendente'}]);
+  if(error)throw error;
+  const msg=`Olá SportBar Fest! Gostaria de solicitar uma reserva.\n\n👤 *Nome:* ${nome}\n📅 *Data:* ${data.split('-').reverse().join('/')}\n⏰ *Início:* ${hora}\n🎉 *Pacote:* ${escolhido.nome}${conv?`\n👥 *Convidados:* ${conv}`:''}${obs?`\n📝 *Obs.:* ${obs}`:''}\n💰 *Valor estimado:* ${brl(escolhido.preco)}\n\nPodemos confirmar a disponibilidade?`;
+  const url=`https://api.whatsapp.com/send?phone=${NUMERO_WHATSAPP}&text=${encodeURIComponent(msg)}`;
+  if(w)w.location.href=url;else location.href=url;
+  document.getElementById('ok-link').href=url;
+  document.getElementById('form-reserva').classList.add('hidden');
+  document.getElementById('ok').classList.remove('hidden');
+ }catch(err){
+  if(w)w.close();console.error(err);
+  alert('Não foi possível enviar a solicitação. Tente novamente ou fale conosco pelo WhatsApp.');
+ }finally{btn.disabled=false;btn.querySelector('span').textContent='Enviar solicitação'}
+}
+function novaReserva(){document.getElementById('form-reserva').reset();document.getElementById('form-reserva').classList.remove('hidden');document.getElementById('ok').classList.add('hidden');document.getElementById('resumo-box').classList.add('hidden');escolhido=null;document.querySelectorAll('input[name=pacote]').forEach(r=>r.checked=false)}
+</script>
 </body>
 </html>
