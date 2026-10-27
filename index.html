@@ -10,23 +10,41 @@
     <style>
         html { scroll-behavior: smooth; }
         .bg-pattern { background-image: radial-gradient(#16a34a 1px, transparent 1px); background-size: 20px 20px; background-color: #f0fdf4; }
+        .hero-gradient { background: radial-gradient(circle at center, #0f291e 0%, #050e0a 100%); }
     </style>
 </head>
 <body class="bg-slate-50 text-slate-800 font-sans antialiased">
 
-    <!-- Header / Hero -->
-    <header class="bg-green-600 text-white shadow-lg">
-        <div class="max-w-6xl mx-auto px-4 py-16 sm:py-24 text-center">
-            <h1 class="text-4xl sm:text-6xl font-extrabold tracking-tight mb-4 uppercase text-yellow-300 drop-shadow-md">
+    <!-- Header / Hero Personalizado e Profissional -->
+    <header class="hero-gradient text-white shadow-2xl relative overflow-hidden border-b-4 border-green-500">
+        <!-- Detalhes visuais de fundo -->
+        <div class="absolute inset-0 opacity-10 bg-[radial-gradient(#22c55e_1px,transparent_1px)] [background-size:16px_16px]"></div>
+        
+        <div class="max-w-6xl mx-auto px-4 py-16 sm:py-24 text-center flex flex-col items-center relative z-10">
+            <!-- Logo Oficial com borda iluminada -->
+            <div class="w-36 h-36 sm:w-44 sm:h-44 mb-6 rounded-full overflow-hidden border-4 border-green-400 shadow-[0_0_30px_rgba(34,197,94,0.4)] bg-black flex items-center justify-center transform hover:scale-105 transition duration-300">
+                <img src="logo.jpeg" alt="SportBar Fest Logo" class="w-full h-full object-cover">
+            </div>
+
+            <span class="bg-green-500/20 text-green-400 text-xs sm:text-sm font-bold uppercase tracking-widest px-4 py-1.5 rounded-full mb-3 border border-green-500/30">
+                Salão de Festas & Quadra Society
+            </span>
+
+            <h1 class="text-4xl sm:text-6xl font-extrabold tracking-tight mb-4 uppercase text-yellow-300 drop-shadow-[0_2px_10px_rgba(234,179,8,0.3)]">
                 SportBar Fest
             </h1>
-            <p class="text-lg sm:text-2xl font-medium mb-8">O melhor espaço para a sua festa e diversão garantida!</p>
-            <div class="flex justify-center gap-4 text-sm font-semibold mb-8">
-                <span class="bg-white/20 px-4 py-2 rounded-full"><i class="fa-solid fa-users"></i> Até 120 Pessoas</span>
-                <span class="bg-white/20 px-4 py-2 rounded-full"><i class="fa-solid fa-futbol"></i> Quadra Society</span>
-                <span class="bg-white/20 px-4 py-2 rounded-full"><i class="fa-solid fa-snowflake"></i> Salão Climatizado</span>
+            
+            <p class="text-lg sm:text-2xl font-medium text-slate-300 mb-8 max-w-2xl">
+                O espaço completo para a sua festa, aniversário e momentos de diversão garantida!
+            </p>
+
+            <div class="flex flex-wrap justify-center gap-3 sm:gap-4 text-sm font-semibold mb-10">
+                <span class="bg-slate-800/80 border border-slate-700 px-4 py-2 rounded-full text-green-400 flex items-center gap-2"><i class="fa-solid fa-users"></i> Até 120 Pessoas</span>
+                <span class="bg-slate-800/80 border border-slate-700 px-4 py-2 rounded-full text-green-400 flex items-center gap-2"><i class="fa-solid fa-futbol"></i> Quadra Society</span>
+                <span class="bg-slate-800/80 border border-slate-700 px-4 py-2 rounded-full text-green-400 flex items-center gap-2"><i class="fa-solid fa-snowflake"></i> Salão Climatizado</span>
             </div>
-            <a href="#reserva" class="inline-block bg-yellow-400 hover:bg-yellow-300 text-green-900 font-bold text-lg px-8 py-4 rounded-xl shadow-lg transition transform hover:scale-105">
+
+            <a href="#reserva" class="inline-block bg-yellow-400 hover:bg-yellow-300 text-slate-950 font-extrabold text-lg px-8 py-4 rounded-xl shadow-[0_0_20px_rgba(250,204,21,0.4)] transition transform hover:scale-105">
                 Faça sua Reserva Já
             </a>
         </div>
@@ -58,13 +76,38 @@
         </div>
     </section>
 
+    <!-- Carrossel de Demonstração do Espaço -->
+    <section class="py-12 bg-slate-100">
+        <div class="max-w-5xl mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center text-green-700 mb-8">Conheça Nosso Espaço</h2>
+            
+            <div class="relative rounded-3xl overflow-hidden shadow-2xl bg-black group">
+                <div id="carousel-container" class="relative h-[300px] sm:h-[500px] w-full flex items-center justify-center">
+                    <img src="carrocel 1.jpeg" class="carousel-item absolute inset-0 w-full h-full object-cover transition-opacity duration-700 opacity-100" alt="Fachada SportBar">
+                    <img src="carrocel 2.jpeg" class="carousel-item absolute inset-0 w-full h-full object-cover transition-opacity duration-700 opacity-0" alt="Área Kids e Jogos">
+                    <img src="carrocel 3.jpeg" class="carousel-item absolute inset-0 w-full h-full object-cover transition-opacity duration-700 opacity-0" alt="Estrutura Interna">
+                    <img src="carrocel 4.jpeg" class="carousel-item absolute inset-0 w-full h-full object-cover transition-opacity duration-700 opacity-0" alt="Decoração de Festas">
+                    <img src="carrocel 6.jpeg" class="carousel-item absolute inset-0 w-full h-full object-cover transition-opacity duration-700 opacity-0" alt="Mesa de Aniversário">
+                    <img src="carrocel 7.jpeg" class="carousel-item absolute inset-0 w-full h-full object-cover transition-opacity duration-700 opacity-0" alt="Brinquedos e Lazer">
+                    <img src="carrocel 8.jpeg" class="carousel-item absolute inset-0 w-full h-full object-cover transition-opacity duration-700 opacity-0" alt="Entrada Decorada">
+                </div>
+
+                <button onclick="mudarSlide(-1)" class="absolute left-4 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/80 text-white w-12 h-12 rounded-full flex items-center justify-center text-xl transition z-10">
+                    <i class="fa-solid fa-chevron-left"></i>
+                </button>
+                <button onclick="mudarSlide(1)" class="absolute right-4 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/80 text-white w-12 h-12 rounded-full flex items-center justify-center text-xl transition z-10">
+                    <i class="fa-solid fa-chevron-right"></i>
+                </button>
+            </div>
+        </div>
+    </section>
+
     <!-- Pacotes -->
     <section class="py-16 bg-pattern">
         <div class="max-w-6xl mx-auto px-4">
             <h2 class="text-3xl font-bold text-center text-green-700 mb-12">Nossos Pacotes</h2>
             
             <div class="grid md:grid-cols-3 gap-8">
-                
                 <!-- Pacote Básico -->
                 <div class="bg-white rounded-3xl shadow-xl overflow-hidden border-2 border-green-500 flex flex-col relative">
                     <div class="bg-green-600 p-6 text-center text-white">
@@ -143,7 +186,6 @@
                         </div>
                     </div>
                 </div>
-
             </div>
         </div>
     </section>
@@ -197,21 +239,45 @@
     </footer>
 
     <script>
-        // Supabase Keys inseridas conforme solicitado
         const SUPABASE_URL = 'https://doecoosuqibzdsyadsyg.supabase.co'; 
         const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImRvZWNvb3N1cWliemRzeWFkc3lnIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODk5MjQwMDAsImV4cCI6MjEwNTUwMDAwMH0.M2-NrLZQv-DqTtsIp4DbFHzgTjUENCA5X1ZPdDlmhPQ';
         const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
-        // O Telefone definido na sua regra
         const NUMERO_WHATSAPP = "553191627597"; 
 
-        // Bloquear datas passadas no calendário
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.carousel-item');
+        
+        function mostrarSlide(index) {
+            slides.forEach((slide, i) => {
+                slide.classList.remove('opacity-100');
+                slide.classList.add('opacity-0');
+                if (i === index) {
+                    slide.classList.remove('opacity-0');
+                    slide.classList.add('opacity-100');
+                }
+            });
+        }
+
+        function mudarSlide(direcao) {
+            currentSlide += direcao;
+            if (currentSlide >= slides.length) {
+                currentSlide = 0;
+            } else if (currentSlide < 0) {
+                currentSlide = slides.length - 1;
+            }
+            mostrarSlide(currentSlide);
+        }
+
+        setInterval(() => {
+            mudarSlide(1);
+        }, 4000);
+
         document.addEventListener('DOMContentLoaded', () => {
             const hoje = new Date().toISOString().split('T')[0];
             document.getElementById('cli_data').min = hoje;
         });
 
-        // Atualizar resumo ao selecionar pacote
         const radios = document.querySelectorAll('input[name="pacote"]');
         radios.forEach(radio => {
             radio.addEventListener('change', () => {
@@ -238,7 +304,6 @@
             const data = document.getElementById('cli_data').value;
             const hora = document.getElementById('cli_hora').value;
 
-            // Salvar no Banco de Dados
             try {
                 const { error } = await supabaseClient.from('eventos_sportbar').insert([{
                     cliente_nome: nome,
@@ -252,13 +317,11 @@
 
                 if(error) throw error;
 
-                // Redirecionar para o WhatsApp
                 const dataFmt = data.split('-').reverse().join('/');
                 const msg = `Olá SportBar Fest! Gostaria de solicitar uma reserva.\n\n👤 *Nome:* ${nome}\n📅 *Data:* ${dataFmt}\n⏰ *Início:* ${hora}\n🎉 *Pacote:* ${nomePacote}\n💰 *Valor Estimado:* R$ ${parseFloat(preco).toFixed(2)}\n\nPodemos confirmar a disponibilidade?`;
                 
                 window.open(`https://api.whatsapp.com/send?phone=${NUMERO_WHATSAPP}&text=${encodeURIComponent(msg)}`, '_blank');
                 
-                // Limpar formulário
                 document.getElementById('form-reserva').reset();
                 document.getElementById('resumo-box').classList.add('hidden');
 
