@@ -29,9 +29,10 @@
                 <div class="text-sm text-slate-500 font-bold uppercase mb-1">Receita Prevista</div>
                 <div class="text-4xl font-extrabold text-blue-600" id="dash-receita">R$ 0,00</div>
             </div>
+            <!-- Atualizado: Exibe o Valor Confirmado / Recebido acumulado -->
             <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-6">
-                <div class="text-sm text-slate-500 font-bold uppercase mb-1">Ticket Médio</div>
-                <div class="text-4xl font-extrabold text-green-600" id="dash-ticket">R$ 0,00</div>
+                <div class="text-sm text-slate-500 font-bold uppercase mb-1">Valor Confirmado (Recebido)</div>
+                <div class="text-4xl font-extrabold text-green-600" id="dash-confirmado">R$ 0,00</div>
             </div>
         </div>
 
@@ -62,7 +63,6 @@
     </main>
 
     <script>
-        // Supabase Keys inseridas conforme solicitado
         const SUPABASE_URL = 'https://doecoosuqibzdsyadsyg.supabase.co'; 
         const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImRvZWNvb3N1cWliemRzeWFkc3lnIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODk5MjQwMDAsImV4cCI6MjEwNTUwMDAwMH0.M2-NrLZQv-DqTtsIp4DbFHzgTjUENCA5X1ZPdDlmhPQ';
         const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
@@ -82,21 +82,23 @@
         }
 
         function renderizarDashboard(eventos) {
-            let receitaAtiva = 0;
+            let receitaPrevista = 0;
+            let valorConfirmado = 0;
             let qtdAtiva = 0;
 
             eventos.forEach(ev => {
                 if(ev.status !== 'cancelado') {
-                    receitaAtiva += parseFloat(ev.valor_total);
+                    receitaPrevista += parseFloat(ev.valor_total);
                     qtdAtiva++;
+                }
+                if(ev.status === 'confirmado') {
+                    valorConfirmado += parseFloat(ev.valor_total);
                 }
             });
 
-            const ticketMedio = qtdAtiva > 0 ? (receitaAtiva / qtdAtiva) : 0;
-
             document.getElementById('dash-qtd').innerText = qtdAtiva;
-            document.getElementById('dash-receita').innerText = `R$ ${receitaAtiva.toLocaleString('pt-BR', {minimumFractionDigits:2})}`;
-            document.getElementById('dash-ticket').innerText = `R$ ${ticketMedio.toLocaleString('pt-BR', {minimumFractionDigits:2})}`;
+            document.getElementById('dash-receita').innerText = `R$ ${receitaPrevista.toLocaleString('pt-BR', {minimumFractionDigits:2})}`;
+            document.getElementById('dash-confirmado').innerText = `R$ ${valorConfirmado.toLocaleString('pt-BR', {minimumFractionDigits:2})}`;
         }
 
         function renderizarTabela(eventos) {
@@ -129,7 +131,7 @@
                         <span class="px-2 py-1 rounded-full text-xs font-bold ${badgeColor} uppercase tracking-wider">${ev.status}</span>
                     </td>
                     <td class="p-4 text-right">
-                        <select onchange="alterarStatus('${ev.id}', this.value)" class="text-xs border rounded p-1 bg-white outline-none">
+                        <select onchange="alterarStatus('${ev.id}', this.value, '${ev.data_evento}')" class="text-xs border rounded p-1 bg-white outline-none">
                             <option value="">Alterar Status</option>
                             <option value="pendente">Pendente</option>
                             <option value="confirmado">Confirmado</option>
@@ -144,13 +146,41 @@
             });
         }
 
-        async function alterarStatus(id, novoStatus) {
+        // LÓGICA DE ALTERAÇÃO COM CANCELAMENTO AUTOMÁTICO DE PENDENTES NA MESMA DATA
+        async function alterarStatus(id, novoStatus, dataEvento) {
             if(!novoStatus) return;
             try {
-                const { error } = await supabaseClient.from('eventos_sportbar').update({ status: novoStatus }).eq('id', id);
-                if(error) throw error;
+                if(novoStatus === 'confirmado') {
+                    // 1. Marca a solicitação selecionada como CONFIRMADA
+                    const { error: errConfirm } = await supabaseClient
+                        .from('eventos_sportbar')
+                        .update({ status: 'confirmado' })
+                        .eq('id', id);
+
+                    if(errConfirm) throw errConfirm;
+
+                    // 2. Cancela automaticamente todas as demais solicitações PENDENTES para a mesma data
+                    if(dataEvento) {
+                        await supabaseClient
+                            .from('eventos_sportbar')
+                            .update({ status: 'cancelado' })
+                            .eq('data_evento', dataEvento)
+                            .eq('status', 'pendente')
+                            .neq('id', id);
+                    }
+                } else {
+                    const { error } = await supabaseClient
+                        .from('eventos_sportbar')
+                        .update({ status: novoStatus })
+                        .eq('id', id);
+                    if(error) throw error;
+                }
+
                 carregarDados();
-            } catch(e) { alert('Erro ao atualizar status'); }
+            } catch(e) { 
+                console.error(e);
+                alert('Erro ao atualizar status do evento.'); 
+            }
         }
 
         function chamarWhatsapp(telefone, nome) {
