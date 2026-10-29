@@ -10,7 +10,6 @@
 <meta property="og:image" content="logo.jpeg">
 <link rel="icon" href="logo.jpeg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<!-- Nova Fonte: Montserrat -->
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700;800&display=swap" rel="stylesheet">
 <script src="https://cdn.tailwindcss.com"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -47,7 +46,6 @@
   <div class="absolute inset-0 bg-gradient-to-b from-emerald-950/80 via-emerald-900/60 to-emerald-950"></div>
   
   <div class="relative max-w-5xl mx-auto px-4 py-20 sm:py-28 flex flex-col items-center text-center z-10">
-    
     <img src="logo.jpeg" alt="SportBar Fest Logo" class="w-28 h-28 sm:w-36 sm:h-36 rounded-full border-4 border-yellow-400 shadow-2xl mb-6 object-cover">
     
     <h1 class="text-4xl sm:text-6xl font-extrabold tracking-tight drop-shadow-lg mb-5 leading-tight">
@@ -94,13 +92,19 @@
   </div>
 </section>
 
+<!-- SEÇÃO CONHEÇA O ESPAÇO (Galeria de Fotos + Vídeo Sem Som) -->
 <section id="espaco" class="py-14 bg-emerald-950 text-white">
   <div class="max-w-6xl mx-auto px-4">
     <h2 class="text-3xl sm:text-4xl font-extrabold mb-8">Conheça o espaço</h2>
     <div class="grid grid-cols-2 md:grid-cols-3 gap-3" id="galeria"></div>
   </div>
 </section>
-<div id="lightbox" class="hidden fixed inset-0 z-50 bg-black/90 items-center justify-center p-4 cursor-zoom-out"><img id="lb-img" alt="" class="max-h-full max-w-full rounded-lg"></div>
+
+<!-- Lightbox Modal -->
+<div id="lightbox" class="hidden fixed inset-0 z-50 bg-black/90 items-center justify-center p-4 cursor-zoom-out">
+  <img id="lb-img" alt="" class="hidden max-h-full max-w-full rounded-lg">
+  <video id="lb-video" controls autoplay muted playsinline class="hidden max-h-full max-w-full rounded-lg"></video>
+</div>
 
 <section id="pacotes" class="py-14 bg-stone-100">
   <div class="max-w-6xl mx-auto px-4">
@@ -126,6 +130,7 @@
     <div class="bg-white rounded-2xl shadow-xl p-6 sm:p-8 border border-emerald-100">
       <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-800">Solicitar reserva</h2>
       <p class="text-slate-500 mb-6">Sem compromisso: a data só fica reservada após a nossa confirmação.</p>
+      
       <div id="ok" class="hidden text-center py-6">
         <i class="fa-solid fa-circle-check text-5xl text-emerald-600 mb-3"></i>
         <p class="text-2xl sm:text-3xl font-extrabold text-slate-800">Solicitação enviada</p>
@@ -133,6 +138,7 @@
         <a id="ok-link" target="_blank" class="inline-block mt-4 bg-emerald-600 hover:bg-emerald-500 text-white font-bold px-6 py-3 rounded-xl transition">Abrir WhatsApp de novo</a>
         <button onclick="novaReserva()" class="block mx-auto mt-3 text-sm text-slate-500 underline hover:text-slate-700">Fazer outra solicitação</button>
       </div>
+
       <form id="form-reserva" onsubmit="enviarReserva(event)" class="space-y-4">
         <div id="resumo-box" class="hidden bg-emerald-50 border border-emerald-200 rounded-xl p-4 text-emerald-900"><p id="resumo-texto"></p></div>
         <div class="grid sm:grid-cols-2 gap-4">
@@ -154,7 +160,6 @@
   <div class="max-w-3xl mx-auto px-4">
     <h2 class="text-3xl sm:text-4xl font-extrabold text-emerald-800 mb-6">Dúvidas frequentes</h2>
     <div class="divide-y border-y" id="faq-lista"></div>
-    <p class="text-xs text-slate-400 mt-3">Textos de exemplo: ajuste com as regras reais do salão.</p>
   </div>
 </section>
 
@@ -187,7 +192,18 @@ const PACOTES=[
   nota:'Duração de 4 horas.',
   opcoes:[['Alegria 50 pessoas','50 pessoas',6000],['Alegria 60 pessoas','60 pessoas',6500]]}
 ];
-const FOTOS=[['foto1.jpeg','Fachada do SportBar'],['foto4.jpeg','Entrada com arco de balões'],['foto6.jpeg','Festa temática decorada'],['foto3.jpeg','Área kids e brinquedão'],['foto2.jpeg','Pebolim e brinquedos']];
+
+// LISTA DE MÍDIAS DA GALERIA (Vídeo sem som + Fotos do espaço)
+const MIDIAS=[
+ {tipo:'video',src:'video_kids.mp4',alt:'Brinquedos e Área Kids'},
+ {tipo:'imagem',src:'foto_safari.jpeg',alt:'Mesa Decorada Safári Baby'},
+ {tipo:'imagem',src:'foto_mesas.jpeg',alt:'Salão Principal com Mesas e Vista da Quadra'},
+ {tipo:'imagem',src:'foto_balcao.jpeg',alt:'Área do Bar e Balcão de Atendimento'},
+ {tipo:'imagem',src:'foto_quadra.jpeg',alt:'Visão das Mesas ao Lado da Quadra Society'},
+ {tipo:'imagem',src:'foto_churrasqueira.jpeg',alt:'Área da Cozinha e Churrasqueira'},
+ {tipo:'imagem',src:'foto_pula_pula.jpeg',alt:'Área Kids com Pula-Pula e Brinquedão'}
+];
+
 const FAQ=[['Como funciona o pagamento?','Após a confirmação da data, combinamos o sinal e o saldo pelo WhatsApp.'],['Posso levar minha própria bebida e comida?','Nos pacotes de locação, sim. Confirme os detalhes com a equipe.'],['Há tempo para montar a decoração?','Combinamos o horário de montagem junto com a confirmação da reserva.'],['Posso cancelar ou remarcar?','Sim, avise com antecedência pelo WhatsApp e vemos a melhor data.']];
 const brl=v=>'R$ '+Number(v).toLocaleString('pt-BR',{minimumFractionDigits:2});
 const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
@@ -201,11 +217,42 @@ document.getElementById('lista-pacotes').innerHTML=PACOTES.map((p,i)=>`
    ${p.nota?`<p class="text-xs text-slate-500 mt-3">${p.nota}</p>`:''}
   </div></div>`).join('');
 
-document.getElementById('galeria').innerHTML=FOTOS.map((f,i)=>`<button type="button" class="overflow-hidden rounded-xl ${i===0?'col-span-2 md:col-span-2':''}"  data-src="${f[0]}"><img src="${f[0]}" alt="${f[1]}" loading="lazy" class="w-full h-48 sm:h-64 object-cover hover:scale-105 transition duration-300"></button>`).join('');
-const lb=document.getElementById('lightbox');
-document.getElementById('galeria').addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;document.getElementById('lb-img').src=b.dataset.src;lb.classList.replace('hidden','flex')});
-lb.addEventListener('click',()=>lb.classList.replace('flex','hidden'));
-document.addEventListener('keydown',e=>{if(e.key==='Escape')lb.classList.replace('flex','hidden')});
+// RENDERIZAÇÃO DA GALERIA COM SUPORTE A VÍDEO (MUTED) E FOTOS
+document.getElementById('galeria').innerHTML=MIDIAS.map((m,i)=>`
+ <div class="overflow-hidden rounded-xl relative group ${i===0?'col-span-2 md:col-span-2':''}">
+  ${m.tipo==='video'?`
+    <video src="${m.src}" autoplay loop muted playsinline class="w-full h-48 sm:h-64 object-cover group-hover:scale-105 transition duration-300 cursor-pointer" data-type="video" data-src="${m.src}"></video>
+    <div class="absolute bottom-2 right-2 bg-black/60 text-white text-xs px-2 py-1 rounded-md pointer-events-none flex items-center gap-1"><i class="fa-solid fa-video"></i> Vídeo</div>
+  `:`
+    <img src="${m.src}" alt="${m.alt}" loading="lazy" class="w-full h-48 sm:h-64 object-cover group-hover:scale-105 transition duration-300 cursor-pointer" data-type="image" data-src="${m.src}">
+  `}
+ </div>
+`).join('');
+
+const lb=document.getElementById('lightbox'), lbImg=document.getElementById('lb-img'), lbVid=document.getElementById('lb-video');
+
+document.getElementById('galeria').addEventListener('click',e=>{
+ const target=e.target.closest('[data-src]');
+ if(!target) return;
+ const type=target.dataset.type, src=target.dataset.src;
+ if(type==='video'){
+   lbImg.classList.add('hidden');
+   lbVid.src=src;
+   lbVid.classList.remove('hidden');
+ }else{
+   lbVid.classList.add('hidden');
+   lbVid.pause();
+   lbImg.src=src;
+   lbImg.classList.remove('hidden');
+ }
+ lb.classList.replace('hidden','flex');
+});
+
+lb.addEventListener('click',()=>{
+ lb.classList.replace('flex','hidden');
+ lbVid.pause();
+});
+document.addEventListener('keydown',e=>{if(e.key==='Escape'){lb.classList.replace('flex','hidden');lbVid.pause();}});
 
 document.getElementById('faq-lista').innerHTML=FAQ.map(f=>`<details class="py-4"><summary class="flex justify-between items-center font-semibold text-lg">${f[0]}<i class="fa-solid fa-chevron-down chev text-slate-400 transition"></i></summary><p class="text-slate-600 mt-2">${f[1]}</p></details>`).join('');
 
@@ -223,14 +270,26 @@ document.getElementById('cli_tel').addEventListener('input',e=>{
  e.target.value=d.length>10?d.replace(/(\d\d)(\d{5})(\d{4})/,'($1) $2-$3'):d.length>6?d.replace(/(\d\d)(\d{4})(\d{0,4})/,'($1) $2-$3'):d.length>2?d.replace(/(\d\d)(\d*)/,'($1) $2'):d;
 });
 
+// REGRA DE DATAS: APENAS EVENTOS COM STATUS 'confirmado' BLOQUEIAM A DATA NO CALENDÁRIO
 let ocupadas=new Set();
 const dataEl=document.getElementById('cli_data'),btn=document.getElementById('btn-enviar'),msgData=document.getElementById('msg-data');
 dataEl.min=new Date().toISOString().split('T')[0];
-db.from('datas_ocupadas').select('data_evento').then(({data,error})=>{if(!error&&data)ocupadas=new Set(data.map(d=>d.data_evento))});
+
+function carregarDatasConfirmadas(){
+ db.from('eventos_sportbar')
+   .select('data_evento')
+   .eq('status', 'confirmado')
+   .then(({data,error})=>{
+     if(!error&&data) ocupadas=new Set(data.map(d=>d.data_evento));
+   });
+}
+carregarDatasConfirmadas();
+
 dataEl.addEventListener('change',()=>{
  const bloq=ocupadas.has(dataEl.value);
- msgData.textContent=bloq?'Esta data já está reservada. Escolha outro dia.':'';
- msgData.classList.toggle('hidden',!bloq);btn.disabled=bloq;
+ msgData.textContent=bloq?'Esta data já possui um evento confirmado. Escolha outro dia.':'';
+ msgData.classList.toggle('hidden',!bloq);
+ btn.disabled=bloq;
 });
 
 async function enviarReserva(e){
@@ -264,6 +323,7 @@ Podemos confirmar a disponibilidade?`;
   alert('Não foi possível enviar a solicitação. Tente novamente ou fale conosco pelo WhatsApp.');
  }finally{btn.disabled=false;btn.querySelector('span').textContent='Enviar solicitação'}
 }
+
 function novaReserva(){document.getElementById('form-reserva').reset();document.getElementById('form-reserva').classList.remove('hidden');document.getElementById('ok').classList.add('hidden');document.getElementById('resumo-box').classList.add('hidden');escolhido=null;document.querySelectorAll('input[name=pacote]').forEach(r=>r.checked=false)}
 </script>
 </body>
