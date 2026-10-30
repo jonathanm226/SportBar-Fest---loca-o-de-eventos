@@ -1,112 +1,338 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Locação de Espaço para Eventos</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <style>
-        :root {
-            --primary-green: #0F5132;
-            --bg-light: #F8F9FA;
-            --card-bg: #F0FDF4;
-            --border-color: #DCFCE7;
-            --dark-text: #1F2937;
-            --muted-text: #6C757D;
-        }
-
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', system-ui, sans-serif; }
-        body { background-color: var(--bg-light); color: var(--dark-text); padding: 40px 20px; }
-
-        .container { max-width: 1050px; margin: 0 auto; }
-
-        .festa-section {
-            background: #FFFFFF;
-            border: 1px solid #E5E7EB;
-            border-radius: 12px;
-            padding: 30px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-        }
-
-        .festa-title {
-            color: var(--primary-green);
-            font-size: 1.8rem;
-            font-weight: 800;
-            margin-bottom: 24px;
-        }
-
-        .festa-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 16px;
-            margin-bottom: 20px;
-        }
-
-        .festa-card {
-            background-color: var(--card-bg);
-            border: 1px solid var(--border-color);
-            border-radius: 12px;
-            padding: 20px;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            min-height: 120px;
-        }
-
-        .festa-icon {
-            font-size: 1.5rem;
-            margin-bottom: 12px;
-        }
-
-        .festa-card span {
-            font-weight: 700;
-            color: var(--dark-text);
-            font-size: 0.95rem;
-            line-height: 1.3;
-        }
-
-        .festa-footer-text {
-            font-size: 0.9rem;
-            color: var(--muted-text);
-            margin-top: 15px;
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SportBar Fest – Salão de Festas e Quadra Society</title>
+<meta name="description" content="Salão de festas com quadra society, área kids e buffet completo. Espaço coberto. Solicite sua reserva pelo WhatsApp.">
+<meta property="og:title" content="SportBar Fest – Salão de Festas">
+<meta property="og:description" content="Quadra society, área kids e buffet. Reserve sua data.">
+<meta property="og:image" content="logo.jpeg">
+<link rel="icon" href="logo.jpeg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700;800&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<style>
+  html { scroll-behavior: smooth; scroll-padding-top: 70px; }
+  body { font-family: 'Montserrat', sans-serif; }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+  details > summary { cursor: pointer; list-style: none; }
+  details > summary::-webkit-details-marker { display: none; }
+  details[open] .chev { transform: rotate(180deg); }
+</style>
 </head>
-<body>
+<body class="bg-stone-50 text-slate-800 antialiased">
 
-    <div class="container">
-        <section class="festa-section">
-            <h2 class="festa-title">Estrutura completa para o dia da festa</h2>
-            <div class="festa-grid">
-                <!-- Espaço Coberto (Adicionado) -->
-                <div class="festa-card">
-                    <div class="festa-icon" style="color: #0284C7;"><i class="fa-solid fa-umbrella"></i></div>
-                    <span>Espaço coberto</span>
-                </div>
-                <!-- Freezer Cervejeiro -->
-                <div class="festa-card">
-                    <div class="festa-icon" style="color: #0284C7;"><i class="fa-solid fa-temperature-snowflake"></i></div>
-                    <span>1 freezer cervejeiro</span>
-                </div>
-                <!-- Forno e Fogão Industrial -->
-                <div class="festa-card">
-                    <div class="festa-icon" style="color: #EA580C;"><i class="fa-solid fa-fire-burner"></i></div>
-                    <span>Forno e fogão industrial</span>
-                </div>
-                <!-- Jogos de Mesa -->
-                <div class="festa-card">
-                    <div class="festa-icon" style="color: #15803D;"><i class="fa-solid fa-table-cells"></i></div>
-                    <span>15 jogos de mesa</span>
-                </div>
-                <!-- TVs 55" -->
-                <div class="festa-card">
-                    <div class="festa-icon" style="color: #334155;"><i class="fa-solid fa-tv"></i></div>
-                    <span>2 TVs 55" com YouTube</span>
-                </div>
-            </div>
-            <p class="festa-footer-text">Também incluso: vestiários masculino e feminino, cozinha, churrasqueira, chapa a gás e som ambiente.</p>
-        </section>
+<nav class="sticky top-0 z-40 bg-emerald-950/95 backdrop-blur text-white border-b border-emerald-800 shadow-sm">
+  <div class="max-w-6xl mx-auto px-4 h-16 flex items-center justify-between">
+    <a href="#topo" class="text-xl font-extrabold text-yellow-400 flex items-center gap-3">
+      <img src="logo.jpeg" alt="Logo" class="w-10 h-10 rounded-full object-cover border border-emerald-700">
+      SportBar Fest
+    </a>
+    <div class="hidden md:flex gap-6 text-sm font-medium">
+      <a href="#espaco" class="hover:text-yellow-400 transition">O espaço</a>
+      <a href="#pacotes" class="hover:text-yellow-400 transition">Pacotes</a>
+      <a href="#como" class="hover:text-yellow-400 transition">Como funciona</a>
+      <a href="#faq" class="hover:text-yellow-400 transition">Dúvidas</a>
     </div>
+    <a href="#reserva" class="hidden sm:block bg-yellow-400 hover:bg-yellow-300 text-emerald-950 font-bold text-sm px-5 py-2.5 rounded-full transition">Reservar Agora</a>
+  </div>
+</nav>
 
+<header id="topo" class="relative text-white bg-emerald-950 overflow-hidden">
+  <img src="foto1.jpeg" alt="Fachada do SportBar" class="absolute inset-0 w-full h-full object-cover opacity-40 mix-blend-overlay">
+  <div class="absolute inset-0 bg-gradient-to-b from-emerald-950/80 via-emerald-900/60 to-emerald-950"></div>
+  
+  <div class="relative max-w-5xl mx-auto px-4 py-20 sm:py-28 flex flex-col items-center text-center z-10">
+    <img src="logo.jpeg" alt="SportBar Fest Logo" class="w-28 h-28 sm:w-36 sm:h-36 rounded-full border-4 border-yellow-400 shadow-2xl mb-6 object-cover">
+    
+    <h1 class="text-4xl sm:text-6xl font-extrabold tracking-tight drop-shadow-lg mb-5 leading-tight">
+      O espaço perfeito para a <br class="hidden sm:block"> sua <span class="text-yellow-400">festa inesquecível</span>
+    </h1>
+    
+    <p class="text-lg sm:text-2xl text-emerald-50 font-medium max-w-3xl drop-shadow-md mb-8">
+      Quadra society, área kids e buffet completo. Diversão garantida para as crianças e conforto para os adultos!
+    </p>
+    
+    <div class="flex flex-wrap justify-center gap-3 text-sm font-semibold mb-10">
+      <span class="bg-emerald-900/60 backdrop-blur-sm border border-emerald-500/50 px-5 py-2 rounded-full shadow-sm">
+        <i class="fa-solid fa-users mr-2 text-yellow-400"></i>Até 300 convidados
+      </span>
+      <span class="bg-emerald-900/60 backdrop-blur-sm border border-emerald-500/50 px-5 py-2 rounded-full shadow-sm">
+        <i class="fa-solid fa-futbol mr-2 text-yellow-400"></i>Quadra Society
+      </span>
+      <span class="bg-emerald-900/60 backdrop-blur-sm border border-emerald-500/50 px-5 py-2 rounded-full shadow-sm">
+        <i class="fa-solid fa-child-reaching mr-2 text-yellow-400"></i>Área Kids
+      </span>
+    </div>
+    
+    <div class="flex flex-col sm:flex-row gap-4 w-full sm:w-auto">
+      <a href="#pacotes" class="bg-yellow-400 hover:bg-yellow-300 text-emerald-950 font-extrabold text-lg px-8 py-4 rounded-full shadow-lg shadow-yellow-400/20 transition transform hover:scale-105">
+        Ver pacotes e valores
+      </a>
+      <a href="#espaco" class="bg-white/10 hover:bg-white/20 backdrop-blur-sm border border-white/30 text-white font-bold text-lg px-8 py-4 rounded-full transition">
+        Conhecer o espaço
+      </a>
+    </div>
+  </div>
+</header>
+
+<section class="py-14 bg-white">
+  <div class="max-w-6xl mx-auto px-4">
+    <h2 class="text-3xl sm:text-4xl font-extrabold text-emerald-800 mb-8">Estrutura completa para o dia da festa</h2>
+    <div class="grid grid-cols-2 md:grid-cols-5 gap-4">
+      <div class="p-5 rounded-xl bg-emerald-50"><i class="fa-solid fa-house-chimney text-2xl text-emerald-700 mb-2"></i><p class="font-semibold">Espaço coberto</p></div>
+      <div class="p-5 rounded-xl bg-emerald-50"><i class="fa-solid fa-temperature-arrow-down text-2xl text-sky-600 mb-2"></i><p class="font-semibold">1 freezer cervejeiro</p></div>
+      <div class="p-5 rounded-xl bg-emerald-50"><i class="fa-solid fa-fire-burner text-2xl text-orange-600 mb-2"></i><p class="font-semibold">Forno e fogão industrial</p></div>
+      <div class="p-5 rounded-xl bg-emerald-50"><i class="fa-solid fa-chess-board text-2xl text-emerald-700 mb-2"></i><p class="font-semibold">15 jogos de mesa</p></div>
+      <div class="p-5 rounded-xl bg-emerald-50"><i class="fa-solid fa-tv text-2xl text-slate-700 mb-2"></i><p class="font-semibold">2 TVs 55" com YouTube</p></div>
+    </div>
+    <p class="text-slate-500 mt-5 text-sm">Também incluso: vestiários masculino e feminino, cozinha, churrasqueira, chapa a gás e som ambiente.</p>
+  </div>
+</section>
+
+<!-- SEÇÃO CONHEÇA O ESPAÇO (Galeria de Fotos + Vídeo Sem Som) -->
+<section id="espaco" class="py-14 bg-emerald-950 text-white">
+  <div class="max-w-6xl mx-auto px-4">
+    <h2 class="text-3xl sm:text-4xl font-extrabold mb-8">Conheça o espaço</h2>
+    <div class="grid grid-cols-2 md:grid-cols-3 gap-3" id="galeria"></div>
+  </div>
+</section>
+
+<!-- Lightbox Modal -->
+<div id="lightbox" class="hidden fixed inset-0 z-50 bg-black/90 items-center justify-center p-4 cursor-zoom-out">
+  <img id="lb-img" alt="" class="hidden max-h-full max-w-full rounded-lg">
+  <video id="lb-video" controls autoplay muted playsinline class="hidden max-h-full max-w-full rounded-lg"></video>
+</div>
+
+<section id="pacotes" class="py-14 bg-stone-100">
+  <div class="max-w-6xl mx-auto px-4">
+    <h2 class="text-3xl sm:text-4xl font-extrabold text-emerald-800 mb-2">Pacotes</h2>
+    <p class="text-slate-600 mb-8">Escolha uma opção e ela já vai para o formulário de reserva.</p>
+    <div id="lista-pacotes" class="grid md:grid-cols-3 gap-6 items-start"></div>
+  </div>
+</section>
+
+<section id="como" class="py-14 bg-white">
+  <div class="max-w-4xl mx-auto px-4">
+    <h2 class="text-3xl sm:text-4xl font-extrabold text-emerald-800 mb-8">Como funciona a reserva</h2>
+    <ol class="grid md:grid-cols-3 gap-6">
+      <li><p class="text-xl sm:text-2xl font-extrabold text-emerald-700">1. Escolha o pacote</p><p class="text-slate-600 mt-1">Selecione o pacote e o tempo de festa que combinam com você.</p></li>
+      <li><p class="text-xl sm:text-2xl font-extrabold text-emerald-700">2. Envie a solicitação</p><p class="text-slate-600 mt-1">Preencha data e horário. Seu pedido chega até nós e abre o WhatsApp.</p></li>
+      <li><p class="text-xl sm:text-2xl font-extrabold text-emerald-700">3. Receba a confirmação</p><p class="text-slate-600 mt-1">Verificamos a data e confirmamos a reserva com você pelo WhatsApp.</p></li>
+    </ol>
+  </div>
+</section>
+
+<section id="reserva" class="py-14 bg-emerald-50">
+  <div class="max-w-2xl mx-auto px-4">
+    <div class="bg-white rounded-2xl shadow-xl p-6 sm:p-8 border border-emerald-100">
+      <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-800">Solicitar reserva</h2>
+      <p class="text-slate-500 mb-6">Sem compromisso: a data só fica reservada após a nossa confirmação.</p>
+      
+      <div id="ok" class="hidden text-center py-6">
+        <i class="fa-solid fa-circle-check text-5xl text-emerald-600 mb-3"></i>
+        <p class="text-2xl sm:text-3xl font-extrabold text-slate-800">Solicitação enviada</p>
+        <p class="text-slate-600 mt-1">Abrimos o WhatsApp para você finalizar com a nossa equipe.</p>
+        <a id="ok-link" target="_blank" class="inline-block mt-4 bg-emerald-600 hover:bg-emerald-500 text-white font-bold px-6 py-3 rounded-xl transition">Abrir WhatsApp de novo</a>
+        <button onclick="novaReserva()" class="block mx-auto mt-3 text-sm text-slate-500 underline hover:text-slate-700">Fazer outra solicitação</button>
+      </div>
+
+      <form id="form-reserva" onsubmit="enviarReserva(event)" class="space-y-4">
+        <div id="resumo-box" class="hidden bg-emerald-50 border border-emerald-200 rounded-xl p-4 text-emerald-900"><p id="resumo-texto"></p></div>
+        <div class="grid sm:grid-cols-2 gap-4">
+          <label class="block text-sm font-semibold">Seu nome completo<input id="cli_nome" required class="mt-1 w-full px-4 py-3 rounded-xl border border-slate-300 focus:border-emerald-500 focus:ring-2 focus:ring-emerald-200 outline-none font-normal"></label>
+          <label class="block text-sm font-semibold">WhatsApp<input id="cli_tel" type="tel" required placeholder="(31) 99999-9999" maxlength="15" class="mt-1 w-full px-4 py-3 rounded-xl border border-slate-300 focus:border-emerald-500 focus:ring-2 focus:ring-emerald-200 outline-none font-normal"></label>
+          <label class="block text-sm font-semibold">Data do evento<input id="cli_data" type="date" required class="mt-1 w-full px-4 py-3 rounded-xl border border-slate-300 focus:border-emerald-500 focus:ring-2 focus:ring-emerald-200 outline-none font-normal"></label>
+          <label class="block text-sm font-semibold">Horário de início<input id="cli_hora" type="time" required class="mt-1 w-full px-4 py-3 rounded-xl border border-slate-300 focus:border-emerald-500 focus:ring-2 focus:ring-emerald-200 outline-none font-normal"></label>
+          <label class="block text-sm font-semibold">Número de convidados<input id="cli_conv" type="number" min="1" max="120" class="mt-1 w-full px-4 py-3 rounded-xl border border-slate-300 focus:border-emerald-500 focus:ring-2 focus:ring-emerald-200 outline-none font-normal"></label>
+          <label class="block text-sm font-semibold">Tema ou observações<input id="cli_obs" class="mt-1 w-full px-4 py-3 rounded-xl border border-slate-300 focus:border-emerald-500 focus:ring-2 focus:ring-emerald-200 outline-none font-normal"></label>
+        </div>
+        <p id="msg-data" class="hidden text-sm font-semibold text-red-600"></p>
+        <button id="btn-enviar" type="submit" class="w-full bg-emerald-600 hover:bg-emerald-500 disabled:opacity-60 text-white font-bold py-4 rounded-xl text-lg flex justify-center items-center gap-2 transition"><i class="fa-brands fa-whatsapp text-2xl"></i><span>Enviar solicitação</span></button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<section id="faq" class="py-14 bg-white">
+  <div class="max-w-3xl mx-auto px-4">
+    <h2 class="text-3xl sm:text-4xl font-extrabold text-emerald-800 mb-6">Dúvidas frequentes</h2>
+    <div class="divide-y border-y" id="faq-lista"></div>
+  </div>
+</section>
+
+<footer class="bg-emerald-950 text-emerald-100 py-10 text-sm">
+  <div class="max-w-6xl mx-auto px-4 flex flex-col sm:flex-row justify-between gap-4">
+    <div><p class="text-xl sm:text-2xl text-yellow-400 font-extrabold">SportBar Fest</p><p>Salão de festas &amp; quadra society</p></div>
+    <div class="space-y-1"><p><i class="fa-solid fa-phone mr-2"></i>(31) 3024-3870</p><p><i class="fa-brands fa-instagram mr-2"></i>@sportbar.bh</p><p class="text-emerald-400/70">© 2026 SportBar Fest</p></div>
+  </div>
+</footer>
+
+<a href="#" id="wpp-flutuante" target="_blank" aria-label="Falar no WhatsApp" class="fixed bottom-5 right-5 z-40 bg-green-500 hover:bg-green-400 text-white w-14 h-14 rounded-full shadow-xl flex items-center justify-center text-3xl transition transform hover:scale-110"><i class="fa-brands fa-whatsapp"></i></a>
+
+<script>
+const SUPABASE_URL='https://doecoosuqibzdsyadsyg.supabase.co';
+const SUPABASE_KEY='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImRvZWNvb3N1cWliemRzeWFkc3lnIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODk5MjQwMDAsImV4cCI6MjEwNTUwMDAwMH0.M2-NrLZQv-DqTtsIp4DbFHzgTjUENCA5X1ZPdDlmhPQ';
+const db=supabase.createClient(SUPABASE_URL,SUPABASE_KEY);
+const NUMERO_WHATSAPP="553191627597";
+document.getElementById('wpp-flutuante').href=`https://wa.me/${NUMERO_WHATSAPP}?text=${encodeURIComponent('Olá! Vim pelo site do SportBar Fest.')}`;
+
+const PACOTES=[
+ {titulo:'Locação padrão',sub:'Quadra society + salão',topo:'bg-emerald-700 text-white',borda:'border-emerald-600',cor:'text-emerald-700',
+  itens:['Quadra society liberada','Salão para 300 pessoas','Toda a infraestrutura da cozinha'],
+  nota:'Valores já incluem a taxa de limpeza obrigatória de R$ 100,00.',
+  opcoes:[['Padrão 4h','4 horas',1200],['Padrão 6h','6 horas',1400]]},
+ {titulo:'Pacote kids',sub:'Ideal para aniversários infantis',topo:'bg-yellow-400 text-emerald-950',borda:'border-yellow-400',cor:'text-emerald-700',destaque:'Mais procurado',
+  itens:['Área kids liberada','Quadra society liberada','Salão para 300 pessoas'],
+  opcoes:[['Kids 4h','4 horas',1800],['Kids 6h','6 horas',2100]]},
+ {titulo:'Pacote alegria',sub:'Festa completa, com buffet e decoração',topo:'bg-red-700 text-white',borda:'border-red-600',cor:'text-red-700',
+  itens:['Decoração com +500 balões e tema','Salgadinhos (10 opções), massa, fricassê, doces e mini pizza','Água, suco e refrigerante','Garçons, recepcionista e monitores'],
+  nota:'Duração de 4 horas.',
+  opcoes:[['Alegria 50 pessoas','50 pessoas',6000],['Alegria 60 pessoas','60 pessoas',6500]]}
+];
+
+// LISTA COMPLETA DE MÍDIAS DA GALERIA (Fotos Antigas + Vídeo + Fotos Novas foto9 a foto16)
+const MIDIAS=[
+ {tipo:'video', src:'video.mp4', alt:'Vídeo Área Kids e Jogos'},
+ {tipo:'imagem', src:'foto1.jpeg', alt:'Fachada do SportBar'},
+ {tipo:'imagem', src:'foto2.jpeg', alt:'Pebolim e Brinquedos'},
+ {tipo:'imagem', src:'foto3.jpeg', alt:'Área Kids e Brinquedão'},
+ {tipo:'imagem', src:'foto4.jpeg', alt:'Entrada Decorada com Balões'},
+ {tipo:'imagem', src:'foto6.jpeg', alt:'Festa Temática Decorada'},
+ {tipo:'imagem', src:'foto9.jpeg', alt:'Mesa Decorada Safári Baby'},
+ {tipo:'imagem', src:'foto10.jpeg', alt:'Salão Principal com Mesas e Vista da Quadra'},
+ {tipo:'imagem', src:'foto11.jpeg', alt:'Área do Bar e Balcão de Atendimento'},
+ {tipo:'imagem', src:'foto12.jpeg', alt:'Visão das Mesas ao Lado da Quadra Society'},
+ {tipo:'imagem', src:'foto13.jpeg', alt:'Área da Cozinha e Churrasqueira'},
+ {tipo:'imagem', src:'foto14.jpeg', alt:'Área Kids com Pula-Pula e Trampolim'},
+ {tipo:'imagem', src:'foto15.jpeg', alt:'Visão da Quadra Society'},
+ {tipo:'imagem', src:'foto16.jpeg', alt:'Visão Ampla do Salão e Mesas'}
+];
+
+const FAQ=[['Como funciona o pagamento?','Após a confirmação da data, combinamos o sinal e o saldo pelo WhatsApp.'],['Posso levar minha própria bebida e comida?','Nos pacotes de locação, sim. Confirme os detalhes com a equipe.'],['Há tempo para montar a decoração?','Combinamos o horário de montagem junto com a confirmação da reserva.'],['Posso cancelar ou remarcar?','Sim, avise com antecedência pelo WhatsApp e vemos a melhor data.']];
+const brl=v=>'R$ '+Number(v).toLocaleString('pt-BR',{minimumFractionDigits:2});
+const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+
+document.getElementById('lista-pacotes').innerHTML=PACOTES.map((p,i)=>`
+ <div class="bg-white rounded-2xl shadow-lg overflow-hidden border-2 ${p.borda} ${p.destaque?'md:-translate-y-3':''} transition">
+  <div class="${p.topo} p-5"><h3 class="text-2xl font-extrabold">${p.titulo}</h3><p class="text-sm opacity-90">${p.sub}</p>${p.destaque?`<p class="inline-block mt-2 bg-emerald-950 text-yellow-300 text-xs font-bold px-2 py-1 rounded">${p.destaque}</p>`:''}</div>
+  <div class="p-5">
+   <ul class="space-y-2 text-sm text-slate-600 mb-5">${p.itens.map(t=>`<li><i class="fa-solid fa-check ${p.cor} mr-2"></i>${t}</li>`).join('')}</ul>
+   <div class="space-y-2">${p.opcoes.map(o=>`<label class="flex justify-between items-center p-3 border rounded-lg cursor-pointer hover:bg-slate-50 has-[:checked]:border-emerald-600 has-[:checked]:bg-emerald-50 has-[:checked]:ring-2 has-[:checked]:ring-emerald-200 transition"><span><input type="radio" name="pacote" class="mr-2 accent-emerald-600" data-nome="${o[0]}" data-preco="${o[2]}"><strong>${o[1]}</strong></span><span class="${p.cor} font-bold">${brl(o[2]).replace(',00','')}</span></label>`).join('')}</div>
+   ${p.nota?`<p class="text-xs text-slate-500 mt-3">${p.nota}</p>`:''}
+  </div></div>`).join('');
+
+// RENDERIZAÇÃO DA GALERIA COM SUPORTE A VÍDEO (MUTED) E FOTOS
+document.getElementById('galeria').innerHTML=MIDIAS.map((m,i)=>`
+ <div class="overflow-hidden rounded-xl relative group ${i===0?'col-span-2 md:col-span-2':''}">
+  ${m.tipo==='video'?`
+    <video src="${m.src}" autoplay loop muted playsinline class="w-full h-48 sm:h-64 object-cover group-hover:scale-105 transition duration-300 cursor-pointer" data-type="video" data-src="${m.src}"></video>
+    <div class="absolute bottom-2 right-2 bg-black/60 text-white text-xs px-2 py-1 rounded-md pointer-events-none flex items-center gap-1"><i class="fa-solid fa-video"></i> Vídeo</div>
+  `:`
+    <img src="${m.src}" alt="${m.alt}" loading="lazy" class="w-full h-48 sm:h-64 object-cover group-hover:scale-105 transition duration-300 cursor-pointer" data-type="image" data-src="${m.src}">
+  `}
+ </div>
+`).join('');
+
+const lb=document.getElementById('lightbox'), lbImg=document.getElementById('lb-img'), lbVid=document.getElementById('lb-video');
+
+document.getElementById('galeria').addEventListener('click',e=>{
+ const target=e.target.closest('[data-src]');
+ if(!target) return;
+ const type=target.dataset.type, src=target.dataset.src;
+ if(type==='video'){
+   lbImg.classList.add('hidden');
+   lbVid.src=src;
+   lbVid.classList.remove('hidden');
+ }else{
+   lbVid.classList.add('hidden');
+   lbVid.pause();
+   lbImg.src=src;
+   lbImg.classList.remove('hidden');
+ }
+ lb.classList.replace('hidden','flex');
+});
+
+lb.addEventListener('click',()=>{
+ lb.classList.replace('flex','hidden');
+ lbVid.pause();
+});
+document.addEventListener('keydown',e=>{if(e.key==='Escape'){lb.classList.replace('flex','hidden');lbVid.pause();}});
+
+document.getElementById('faq-lista').innerHTML=FAQ.map(f=>`<details class="py-4"><summary class="flex justify-between items-center font-semibold text-lg">${f[0]}<i class="fa-solid fa-chevron-down chev text-slate-400 transition"></i></summary><p class="text-slate-600 mt-2">${f[1]}</p></details>`).join('');
+
+let escolhido=null;
+document.getElementById('lista-pacotes').addEventListener('change',e=>{
+ const r=e.target;if(!r.dataset.nome)return;
+ escolhido={nome:r.dataset.nome,preco:parseFloat(r.dataset.preco)};
+ document.getElementById('resumo-box').classList.remove('hidden');
+ document.getElementById('resumo-texto').innerHTML=`Pacote: <strong>${esc(escolhido.nome)}</strong> · Valor: <strong>${brl(escolhido.preco)}</strong>`;
+ setTimeout(()=>document.getElementById('reserva').scrollIntoView({behavior:'smooth'}),250);
+});
+
+document.getElementById('cli_tel').addEventListener('input',e=>{
+ let d=e.target.value.replace(/\D/g,'').slice(0,11);
+ e.target.value=d.length>10?d.replace(/(\d\d)(\d{5})(\d{4})/,'($1) $2-$3'):d.length>6?d.replace(/(\d\d)(\d{4})(\d{0,4})/,'($1) $2-$3'):d.length>2?d.replace(/(\d\d)(\d*)/,'($1) $2'):d;
+});
+
+// REGRA DE DATAS: APENAS EVENTOS COM STATUS 'confirmado' BLOQUEIAM A DATA NO CALENDÁRIO
+let ocupadas=new Set();
+const dataEl=document.getElementById('cli_data'),btn=document.getElementById('btn-enviar'),msgData=document.getElementById('msg-data');
+dataEl.min=new Date().toISOString().split('T')[0];
+
+function carregarDatasConfirmadas(){
+ db.from('eventos_sportbar')
+   .select('data_evento')
+   .eq('status', 'confirmado')
+   .then(({data,error})=>{
+     if(!error&&data) ocupadas=new Set(data.map(d=>d.data_evento));
+   });
+}
+carregarDatasConfirmadas();
+
+dataEl.addEventListener('change',()=>{
+ const bloq=ocupadas.has(dataEl.value);
+ msgData.textContent=bloq?'Esta data já possui um evento confirmado. Escolha outro dia.':'';
+ msgData.classList.toggle('hidden',!bloq);
+ btn.disabled=bloq;
+});
+
+async function enviarReserva(e){
+ e.preventDefault();
+ if(!escolhido){alert('Escolha um pacote na seção "Pacotes" antes de enviar.');document.getElementById('pacotes').scrollIntoView({behavior:'smooth'});return}
+ const v=id=>document.getElementById(id).value.trim();
+ const nome=v('cli_nome'),tel=v('cli_tel'),data=v('cli_data'),hora=v('cli_hora'),conv=v('cli_conv'),obs=v('cli_obs');
+ const w=window.open('','_blank'); 
+ btn.disabled=true;btn.querySelector('span').textContent='Enviando...';
+ try{
+  const {error}=await db.from('eventos_sportbar').insert([{cliente_nome:nome,cliente_telefone:tel,pacote_escolhido:escolhido.nome,data_evento:data,horario_inicio:hora,valor_total:escolhido.preco,status:'pendente'}]);
+  if(error)throw error;
+  const msg=`Olá SportBar Fest! Gostaria de solicitar uma reserva.
+
+👤 *Nome:* ${nome}
+📅 *Data:* ${data.split('-').reverse().join('/')}
+⏰ *Início:* ${hora}
+🎉 *Pacote:* ${escolhido.nome}${conv?`
+👥 *Convidados:* ${conv}`:''}${obs?`
+📝 *Obs.:* ${obs}`:''}
+💰 *Valor estimado:* ${brl(escolhido.preco)}
+
+Podemos confirmar a disponibilidade?`;
+  const url=`https://api.whatsapp.com/send?phone=${NUMERO_WHATSAPP}&text=${encodeURIComponent(msg)}`;
+  if(w)w.location.href=url;else location.href=url;
+  document.getElementById('ok-link').href=url;
+  document.getElementById('form-reserva').classList.add('hidden');
+  document.getElementById('ok').classList.remove('hidden');
+ }catch(err){
+  if(w)w.close();console.error(err);
+  alert('Não foi possível enviar a solicitação. Tente novamente ou fale conosco pelo WhatsApp.');
+ }finally{btn.disabled=false;btn.querySelector('span').textContent='Enviar solicitação'}
+}
+
+function novaReserva(){document.getElementById('form-reserva').reset();document.getElementById('form-reserva').classList.remove('hidden');document.getElementById('ok').classList.add('hidden');document.getElementById('resumo-box').classList.add('hidden');escolhido=null;document.querySelectorAll('input[name=pacote]').forEach(r=>r.checked=false)}
+</script>
 </body>
 </html>
