@@ -180,6 +180,14 @@ const db=supabase.createClient(SUPABASE_URL,SUPABASE_KEY);
 const NUMERO_WHATSAPP="553191627597";
 document.getElementById('wpp-flutuante').href=`https://wa.me/${NUMERO_WHATSAPP}?text=${encodeURIComponent('Olá! Vim pelo site do SportBar Fest.')}`;
 
+const INCLUSOS_ESTRUTURA=[
+ 'Espaço coberto',
+ '1 freezer cervejeiro',
+ 'Forno e fogão industrial',
+ '15 jogos de mesa',
+ '2 TVs 55" com YouTube'
+];
+
 const PACOTES=[
  {titulo:'Locação padrão',sub:'Quadra society + salão',topo:'bg-emerald-700 text-white',borda:'border-emerald-600',cor:'text-emerald-700',
   itens:['Quadra society liberada','Salão para 300 pessoas','Toda a infraestrutura da cozinha'],
@@ -220,7 +228,11 @@ document.getElementById('lista-pacotes').innerHTML=PACOTES.map((p,i)=>`
  <div class="bg-white rounded-2xl shadow-lg overflow-hidden border-2 ${p.borda} ${p.destaque?'md:-translate-y-3':''} transition">
   <div class="${p.topo} p-5"><h3 class="text-2xl font-extrabold">${p.titulo}</h3><p class="text-sm opacity-90">${p.sub}</p>${p.destaque?`<p class="inline-block mt-2 bg-emerald-950 text-yellow-300 text-xs font-bold px-2 py-1 rounded">${p.destaque}</p>`:''}</div>
   <div class="p-5">
-   <ul class="space-y-2 text-sm text-slate-600 mb-5">${p.itens.map(t=>`<li><i class="fa-solid fa-check ${p.cor} mr-2"></i>${t}</li>`).join('')}</ul>
+   <ul class="space-y-2 text-sm text-slate-600 mb-4">${p.itens.map(t=>`<li class="flex items-start gap-2"><i class="fa-solid fa-check ${p.cor} mt-1"></i><span>${t}</span></li>`).join('')}</ul>
+   <div class="border-t border-slate-100 pt-3 mb-5">
+    <p class="text-xs font-bold uppercase tracking-wide text-slate-400 mb-2">Conta também com:</p>
+    <ul class="space-y-1.5 text-sm text-slate-600">${INCLUSOS_ESTRUTURA.map(t=>`<li class="flex items-start gap-2"><i class="fa-solid fa-check ${p.cor} mt-1"></i><span>${t}</span></li>`).join('')}</ul>
+   </div>
    <div class="space-y-2">${p.opcoes.map(o=>`<label class="flex justify-between items-center p-3 border rounded-lg cursor-pointer hover:bg-slate-50 has-[:checked]:border-emerald-600 has-[:checked]:bg-emerald-50 has-[:checked]:ring-2 has-[:checked]:ring-emerald-200 transition"><span><input type="radio" name="pacote" class="mr-2 accent-emerald-600" data-nome="${o[0]}" data-preco="${o[2]}"><strong>${o[1]}</strong></span><span class="${p.cor} font-bold">${brl(o[2]).replace(',00','')}</span></label>`).join('')}</div>
    ${p.nota?`<p class="text-xs text-slate-500 mt-3">${p.nota}</p>`:''}
   </div></div>`).join('');
